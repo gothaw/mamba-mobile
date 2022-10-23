@@ -11,6 +11,10 @@
     ],
     "android": {
       "package": "com.radsoltan.mamba"
+    },
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": ["js", "jsx", "scss", "sass"]
     }
   }
 }

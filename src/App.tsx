@@ -1,18 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+
+import styles from "./app.scss";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hello World!!!</Text>
+
+  console.log(styles)
+
+    return (
+    <View style={
+      // @ts-ignore
+      styles.container
+    }>
+      <Text style={
+        // @ts-ignore
+        styles.text
+      }
+      >Hello World!!</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
