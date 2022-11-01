@@ -3,11 +3,15 @@ import { Route, NativeRouter, Routes } from "react-router-native";
 import Game from "../views/Game";
 import MainMenu from "../views/MainMenu";
 
+import { theme } from "../theme";
+import { ContextInterface } from "./ContextInterface";
+
+export const Context = createContext<ContextInterface | null>(null);
+
 const MainController = () => {
-  const Context = createContext({});
 
   return (
-    <Context.Provider value={{}}>
+    <Context.Provider value={theme}>
       <NativeRouter>
         <Routes>
           <Route path="/" element={<MainMenu/>}/>
