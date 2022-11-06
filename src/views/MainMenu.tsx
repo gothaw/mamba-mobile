@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useContext } from 'react';
 import { Text, View } from "react-native";
 import { Link } from "react-router-native";
-import { Context } from "../client/MainController";
+import { Context } from "../util/ContextProvider";
 
 interface OwnProps {
 

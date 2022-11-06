@@ -1,4 +1,4 @@
-import { ContextInterface } from "../client/ContextInterface";
+import { ContextInterface } from "../types/ContextInterface";
 
 export const theme : ContextInterface = {
     container: {
