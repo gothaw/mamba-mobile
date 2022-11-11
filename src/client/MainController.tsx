@@ -3,8 +3,13 @@ import Game from "../views/Game";
 import MainMenu from "../views/MainMenu";
 
 import { ContextProvider } from "../util/ContextProvider";
+import { useFonts } from "expo-font";
 
 const MainController = () => {
+
+  useFonts({
+    "Luckiest-Guy": require("../assets/fonts/LuckiestGuy-Regular.ttf")
+  })
 
   return (
     <ContextProvider>

@@ -2,6 +2,7 @@ import React, { FunctionComponent, useContext } from 'react';
 import { Text, View } from "react-native";
 import { Link } from "react-router-native";
 import { Context } from "../util/ContextProvider";
+import Title from "../components/Title";
 
 interface OwnProps {
 
@@ -15,7 +16,7 @@ const Game: FunctionComponent<Props> = (props) => {
 
   return (
     <View style={{...context.container}}>
-      <Text>Mamba Game</Text>
+      <Title />
       <Link to="/">
         <Text>Back</Text>
       </Link>
