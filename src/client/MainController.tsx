@@ -7,9 +7,13 @@ import { useFonts } from "expo-font";
 
 const MainController = () => {
 
-  useFonts({
+  const [fontsLoaded] = useFonts({
     "Luckiest-Guy": require("../assets/fonts/LuckiestGuy-Regular.ttf")
   })
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <ContextProvider>

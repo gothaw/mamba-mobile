@@ -1,8 +1,7 @@
 import React, { FunctionComponent, useContext } from 'react';
 import { Text, View } from "react-native";
-import { Link } from "react-router-native";
 import { Context } from "../util/ContextProvider";
-import Title from "../components/Title";
+import Icon from "../components/Icon";
 
 interface OwnProps {
 
@@ -16,10 +15,7 @@ const Game: FunctionComponent<Props> = (props) => {
 
   return (
     <View style={{...context.container}}>
-      <Title />
-      <Link to="/">
-        <Text>Back</Text>
-      </Link>
+      <Icon src={"../assets/img/menu_icon.png"} />
     </View>
   );
 };
