@@ -13,3 +13,7 @@ export enum Palette {
   White = "#ffffff",
   DarkYellow = "#bdb479"
 }
+
+export enum Font {
+  LuckiestGuy = "Luckiest-Guy"
+}

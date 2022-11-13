@@ -1,3 +1,3 @@
 export enum Text {
-  START = "start"
+  Start = "start"
 }

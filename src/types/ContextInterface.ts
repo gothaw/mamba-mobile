@@ -1,3 +1,4 @@
 export interface ContextInterface {
-  container: object
+  container: object,
+  mainTitle: object
 }

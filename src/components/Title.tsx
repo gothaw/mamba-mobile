@@ -3,13 +3,19 @@ import { Text } from "react-native";
 import { useFonts } from "expo-font";
 
 interface Props {
-  text: string
+  text: string,
+  style: object
 }
 
-const Title: FunctionComponent<Props> = ({text}) => {
+const Title: FunctionComponent<Props> = (props) => {
+
+  const { text, style } = props;
 
   return (
-    <Text style={{ fontFamily: "Luckiest-Guy" }}>{text}</Text>
+    <Text style={{
+      fontFamily: "Luckiest-Guy",
+      ...style
+    }}>{text}</Text>
   );
 };
 

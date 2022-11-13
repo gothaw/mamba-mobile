@@ -14,7 +14,7 @@ const MainMenu: FunctionComponent<Props> = (props) => {
 
   return (
     <View style={{...context.container}}>
-      <Title text={"Mamba"} />
+      <Title text={"Mamba"} style={context.mainTitle} />
       <Link to="/game">
         <Text>Play</Text>
       </Link>
