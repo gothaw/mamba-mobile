@@ -20,7 +20,7 @@ export const theme : ContextInterface = {
     top: -100,
     left: 0,
     letterSpacing: 3,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowColor: "rgba(0, 0, 0, 0.75)",
     textShadowOffset: {width: -2, height: 2},
     textShadowRadius: 15
   }

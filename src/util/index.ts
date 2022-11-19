@@ -1,3 +1,3 @@
 import { capitalizeFirstLetter } from "./capitalize";
 
-export { capitalizeFirstLetter }
+export { capitalizeFirstLetter };

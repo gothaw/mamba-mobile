@@ -4,4 +4,4 @@ import { Paths } from "./paths";
 export {
   Paths,
   Texts
-}
+};
