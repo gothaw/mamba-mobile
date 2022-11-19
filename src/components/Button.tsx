@@ -1,17 +1,18 @@
 import React, { FunctionComponent } from 'react';
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 import { Link } from "react-router-native";
 
 interface Props {
-  style: object
-  text: string
+  linkTo: string,
+  text: string,
+  style?: object
 }
 
 const Button: FunctionComponent<Props> = (props) => {
-  const {text, style} = props;
+  const {text, linkTo, style} = props;
 
   return (
-    <Link to="/game" style={{...style}}>
+    <Link to={linkTo} style={{...style}}>
       <Text>{text}</Text>
     </Link>
   );

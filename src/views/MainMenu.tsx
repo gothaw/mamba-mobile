@@ -1,23 +1,22 @@
 import React, { FunctionComponent, useContext } from 'react';
-import { Text, View } from "react-native";
-import { Link } from "react-router-native";
-import { Context } from "../util/ContextProvider";
+import { View } from "react-native";
+
+import { Context } from "../client/ContextProvider";
+import { Texts, Paths } from "../config"
 import Title from "../components/Title";
+import Button from "../components/Button";
+import { capitalizeFirstLetter } from "../util";
 
-interface Props {
+interface Props {}
 
-}
-
-const MainMenu: FunctionComponent<Props> = (props) => {
+const MainMenu: FunctionComponent<Props> = () => {
 
   const context = useContext(Context);
 
   return (
-    <View style={{...context.container}}>
-      <Title text={"Mamba"} style={context.mainTitle} />
-      <Link to="/game">
-        <Text>Play</Text>
-      </Link>
+    <View style={{...context.viewWrapper}}>
+      <Title text={Texts.Mamba.toUpperCase()} style={context.mainTitle} />
+      <Button text={capitalizeFirstLetter(Texts.Start)} linkTo={Paths.Game} />
     </View>
   );
 };

@@ -1,16 +1,9 @@
-import { ContextInterface } from "../types/ContextInterface";
+import { Font, FontSize, Palette } from "./default";
+import { theme } from "./theme";
 
-export const theme : ContextInterface = {
-    container: {
-      flex: 1,
-      backgroundColor: "#ffffff",
-      alignItems: "center",
-      justifyContent: "center",
-      position: "relative"
-    },
-    mainTitle: {
-      position: "relative",
-      top: -100,
-      left: 0
-    }
-};
+export {
+  theme,
+  Font,
+  FontSize,
+  Palette
+}

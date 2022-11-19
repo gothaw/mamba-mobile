@@ -1,3 +1,4 @@
-export enum Text {
-  Start = "start"
+export enum Texts {
+  Start = "start",
+  Mamba = "mamba"
 }

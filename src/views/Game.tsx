@@ -1,20 +1,17 @@
 import React, { FunctionComponent, useContext } from 'react';
-import { Text, View } from "react-native";
-import { Context } from "../util/ContextProvider";
+import { View } from "react-native";
+
+import { Context } from "../client/ContextProvider";
 import Icon from "../components/Icon";
 
-interface OwnProps {
+interface Props {}
 
-}
-
-type Props = OwnProps;
-
-const Game: FunctionComponent<Props> = (props) => {
+const Game: FunctionComponent<Props> = () => {
 
   const context = useContext(Context);
 
   return (
-    <View style={{...context.container}}>
+    <View style={{...context.viewWrapper}}>
       <Icon src={"../assets/img/menu_icon.png"} />
     </View>
   );

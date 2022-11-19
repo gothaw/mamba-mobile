@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import { Text } from "react-native";
-import { useFonts } from "expo-font";
 
 interface Props {
   text: string,

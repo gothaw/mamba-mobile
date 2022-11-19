@@ -1,5 +1,6 @@
 import React, { createContext, FunctionComponent } from 'react';
-import { ContextInterface } from "../types/ContextInterface";
+
+import { ContextInterface } from "../types";
 import { theme } from "../theme";
 
 type Props = {
