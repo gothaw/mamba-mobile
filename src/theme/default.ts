@@ -1,8 +1,8 @@
 export enum FontSize {
-  Title = "24px",
-  Large = "18px",
-  Medium = "12px",
-  Small =  "8px"
+  Title = 64,
+  Large = 18,
+  Medium = 12,
+  Small =  8
 }
 
 export enum Palette {
@@ -11,7 +11,7 @@ export enum Palette {
   LightGreen = "#cff09e",
   Black = "#000000",
   White = "#ffffff",
-  DarkYellow = "#bdb479"
+  Yellow = "#ffe100"
 }
 
 export enum Font {
