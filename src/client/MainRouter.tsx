@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext } from 'react';
+import React, { FunctionComponent, useContext } from "react";
 import { NativeRouter, Route, Routes } from "react-router-native";
 import { View } from "react-native";
 

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent } from "react";
 import { Image, ImageSourcePropType, View } from "react-native";
 import { Link } from "react-router-native";
 

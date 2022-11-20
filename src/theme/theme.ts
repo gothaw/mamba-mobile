@@ -4,7 +4,6 @@ import { FontSize, Palette } from "./default";
 export const theme : ContextInterface = {
   container: {
     flex: 1,
-    backgroundColor: Palette.Green,
     position: "relative"
   },
   viewWrapper: {

@@ -4,6 +4,6 @@ const App = () => {
   return (
     <MainController/>
   );
-}
+};
 
 export default App;

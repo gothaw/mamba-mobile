@@ -18,6 +18,7 @@ module.exports = {
         sourceType: "module"
     },
     rules: {
+        "@typescript-eslint/no-empty-interface": "off",
         "semi": ["error", "always"],
         "quotes": ["error", "double"]
     }

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent } from "react";
 import { Text } from "react-native";
 import { Link } from "react-router-native";
 

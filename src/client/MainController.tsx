@@ -7,7 +7,7 @@ const MainController = () => {
 
   const [fontsLoaded] = useFonts({
     "Luckiest-Guy": require("../assets/fonts/LuckiestGuy-Regular.ttf")
-  })
+  });
 
   if (!fontsLoaded) {
     return null;
@@ -18,6 +18,6 @@ const MainController = () => {
       <MainRouter/>
     </ContextProvider>
   );
-}
+};
 
 export default MainController;
