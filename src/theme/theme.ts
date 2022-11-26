@@ -1,4 +1,5 @@
 import { ContextInterface } from "../types";
+
 import { FontSize, Palette } from "./default";
 
 export const theme : ContextInterface = {

@@ -1,7 +1,7 @@
 import React, { createContext, FunctionComponent } from "react";
 
-import { ContextInterface } from "../types";
 import { theme } from "../theme";
+import { ContextInterface } from "../types";
 
 type Props = {
   children: React.ReactNode
