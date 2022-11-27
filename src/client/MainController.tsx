@@ -1,21 +1,22 @@
-import { useFonts } from "expo-font";
+import { useAppLauncher } from "../hooks/useAppLauncher";
 
 import { ContextProvider } from "./ContextProvider";
 import MainRouter from "./MainRouter";
 
 const MainController = () => {
 
-  const [fontsLoaded] = useFonts({
-    "Luckiest-Guy": require("../assets/fonts/LuckiestGuy-Regular.ttf")
-  });
+  const {
+    isAppReady,
+    onLayoutCallback
+  } = useAppLauncher();
 
-  if (!fontsLoaded) {
+  if (!isAppReady) {
     return null;
   }
 
   return (
     <ContextProvider>
-      <MainRouter/>
+      <MainRouter onLayoutCallback={onLayoutCallback}/>
     </ContextProvider>
   );
 };

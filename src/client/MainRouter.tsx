@@ -8,14 +8,17 @@ import MainMenu from "../views/MainMenu";
 
 import { Context } from "./ContextProvider";
 
-interface Props {}
+interface Props {
+  onLayoutCallback: () => void
+}
 
-const MainRouter: FunctionComponent<Props> = () => {
+const MainRouter: FunctionComponent<Props> = (props) => {
 
   const context = useContext(Context);
+  const { onLayoutCallback } = props;
 
   return (
-    <View style={{...context.container}}>
+    <View style={{...context.container}} onLayout={onLayoutCallback}>
       <NativeRouter>
         <Routes>
           <Route path={Paths.MainMenu} element={<MainMenu/>}/>
