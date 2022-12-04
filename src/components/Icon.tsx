@@ -3,7 +3,7 @@ import { Image, ImageSourcePropType, View } from "react-native";
 import { Link } from "react-router-native";
 
 interface OwnProps {
-  src: string
+  src: ImageSourcePropType
 }
 
 type Props = OwnProps;
@@ -14,7 +14,7 @@ const Icon: FunctionComponent<Props> = (props) => {
   return (
     <View>
       <Link to={"/"}>
-        <Image source={require("../assets/img/menu_icon.png")} />
+        <Image source={src} />
       </Link>
     </View>
   );

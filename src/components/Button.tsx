@@ -12,8 +12,8 @@ const Button: FunctionComponent<Props> = (props) => {
   const {text, linkTo, style} = props;
 
   return (
-    <Link to={linkTo} style={{...style}}>
-      <Text>{text}</Text>
+    <Link to={linkTo}>
+      <Text style={{...style}}>{text}</Text>
     </Link>
   );
 };

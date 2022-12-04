@@ -11,7 +11,8 @@ export enum Palette {
   LightGreen = "#cff09e",
   Black = "#000000",
   White = "#ffffff",
-  Yellow = "#ffe100"
+  Yellow = "#ffe100",
+  MambaGreen = "#3fcd00"
 }
 
 export enum Font {

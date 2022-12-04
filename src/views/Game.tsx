@@ -14,7 +14,7 @@ const Game: FunctionComponent<Props> = () => {
   return (
     <BackgroundGradient>
       <View style={{...context.viewWrapper}}>
-        <Icon src={"../assets/img/menu_icon.png"} />
+        <Icon src={require("../assets/img/menu_icon.png")} />
       </View>
     </BackgroundGradient>
   );
