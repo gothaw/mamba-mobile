@@ -13,7 +13,7 @@ export const theme : ContextInterface = {
     justifyContent: "center",
     position: "relative"
   },
-  mainTitle: {
+  mainTitle: { // Not used
     position: "relative",
     color: Palette.Yellow,
     fontSize: FontSize.Title,
