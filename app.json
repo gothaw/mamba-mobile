@@ -10,11 +10,24 @@
       "android",
       "web"
     ],
+    "splash": {
+      "image": "./src/assets/img/splash_screen.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
     "android": {
       "package": "com.radsoltan.mamba"
     },
     "ios": {
       "requireFullScreen": true
-    }
+    },
+    "plugins": [
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "LANDSCAPE"
+        }
+      ]
+    ]
   }
 }

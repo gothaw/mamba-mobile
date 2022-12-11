@@ -11,7 +11,8 @@
     "react-native-web": "~0.18.7",
     "react-router-native": "^6.4.2",
     "rxjs": "^7.5.7",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "expo-screen-orientation": "~4.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
