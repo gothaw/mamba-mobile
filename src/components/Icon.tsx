@@ -13,7 +13,7 @@ const Icon: FunctionComponent<Props> = (props) => {
 
   return (
     <View>
-      <Link to={"/"}>
+      <Link to={"/"} underlayColor={"none"}>
         <Image source={src} />
       </Link>
     </View>

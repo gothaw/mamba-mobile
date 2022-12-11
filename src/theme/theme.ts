@@ -1,6 +1,8 @@
+import { RFValue } from "react-native-responsive-fontsize";
+
 import { ContextInterface } from "../types";
 
-import { FontSize, Palette } from "./default";
+import { Font, FontSize, Palette } from "./default";
 
 export const theme : ContextInterface = {
   container: {
@@ -13,18 +15,19 @@ export const theme : ContextInterface = {
     justifyContent: "center",
     position: "relative"
   },
-  mainTitle: { // Not used
-    position: "relative",
-    color: Palette.Yellow,
-    fontSize: FontSize.Title,
-    top: -100,
-    left: 0,
-    letterSpacing: 3,
-    textShadowColor: "rgba(0, 0, 0, 0.75)",
-    textShadowOffset: {width: -2, height: 2},
-    textShadowRadius: 15
-  },
   mainMenuLogo: {
     resizeMode: "contain"
+  },
+  mainMenuButton: {
+    width: "50%",
+    alignItems: "center"
+  },
+  mainMenuButtonText: {
+    color: Palette.Yellow,
+    fontFamily: Font.LuckiestGuy,
+    fontSize: RFValue(FontSize.L),
+    textShadowColor: "rgba(0, 0, 0, 1)",
+    textShadowOffset: {width: -2, height: 2},
+    textShadowRadius: 1,
   }
 };

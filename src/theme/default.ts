@@ -1,8 +1,9 @@
 export enum FontSize {
-  Title = 64,
-  Large = 18,
-  Medium = 12,
-  Small =  8
+  XXL = 64,
+  XL = 48,
+  L = 32,
+  M = 12,
+  S =  8
 }
 
 export enum Palette {

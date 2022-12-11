@@ -1,6 +1,7 @@
 export interface ContextInterface {
-  container: object,
-  viewWrapper: object,
-  mainTitle: object,
-  mainMenuLogo: object
+  container?: object,
+  viewWrapper?: object,
+  mainMenuLogo?: object,
+  mainMenuButton?: object,
+  mainMenuButtonText?: object
 }

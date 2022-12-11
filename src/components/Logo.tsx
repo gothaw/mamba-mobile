@@ -8,6 +8,7 @@ interface Props {
 const Logo: FunctionComponent<Props> = (props) => {
   const {style} = props;
 
+  // todo https://www.npmjs.com/package/react-native-responsive-screen
   const width = Dimensions.get("window").width * 0.5;
   const height = Dimensions.get("window").height * 0.5;
 

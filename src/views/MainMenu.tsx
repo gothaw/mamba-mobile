@@ -19,11 +19,10 @@ const MainMenu: FunctionComponent<Props> = () => {
       <View style={{...context.viewWrapper}}>
         <Logo style={context.mainMenuLogo} />
         <Button
-          style={{
-            fontSize: 40
-          }}
           text={capitalizeFirstLetter(Texts.Start)}
           linkTo={Paths.Game}
+          style={context.mainMenuButton}
+          textStyle={context.mainMenuButtonText}
         />
       </View>
     </BackgroundGradient>

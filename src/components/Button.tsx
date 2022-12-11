@@ -5,15 +5,16 @@ import { Link } from "react-router-native";
 interface Props {
   linkTo: string,
   text: string,
-  style?: object
+  style?: object,
+  textStyle?: object
 }
 
 const Button: FunctionComponent<Props> = (props) => {
-  const {text, linkTo, style} = props;
+  const {text, linkTo, style, textStyle} = props;
 
   return (
-    <Link to={linkTo}>
-      <Text style={{...style}}>{text}</Text>
+    <Link to={linkTo} style={{...style}} underlayColor={"none"}>
+      <Text style={{...textStyle}}>{text}</Text>
     </Link>
   );
 };
