@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "sdkVersion": "46.0.0",
     "orientation": "landscape",
+    "icon": "./src/assets/img/app_icon.png",
     "platforms": [
       "ios",
       "android",
@@ -16,10 +17,17 @@
       "backgroundColor": "#000000"
     },
     "android": {
-      "package": "com.radsoltan.mamba"
+      "package": "com.radsoltan.mamba",
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/img/adaptive_app_icon.png",
+        "backgroundColor": "#ffffff"
+      }
     },
     "ios": {
       "requireFullScreen": true
+    },
+    "web": {
+      "favicon": "./src/assets/img/app_icon.png"
     },
     "plugins": [
       [
