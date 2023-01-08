@@ -6,5 +6,8 @@ export interface ThemeInterface {
   mainMenuButtonText?: object,
   mainMenuIconWrapper?: object,
   mainMenuIconLink?: object,
-  mainMenuIconImg?: object
+  mainMenuIconImg?: object,
+  mainMenuLeftWeb: object,
+  mainMenuRightWeb: object,
+  mainMenuWebImg: object
 }

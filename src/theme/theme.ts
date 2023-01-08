@@ -69,5 +69,20 @@ export const theme : ThemeInterface = {
     width: windowWidth * 0.10,
     height: windowHeight * 0.15,
     resizeMode: "contain",
+  },
+  mainMenuLeftWeb: {
+    position: "absolute",
+    top: -0.3 * windowHeight,
+    left: -0.4 * windowWidth
+  },
+  mainMenuRightWeb: {
+    position: "absolute",
+    bottom: -0.3 * windowHeight,
+    right: -0.4 * windowWidth
+  },
+  mainMenuWebImg: {
+    width: windowWidth,
+    height: windowHeight,
+    resizeMode: "contain",
   }
 };
