@@ -2,6 +2,7 @@ import React, { FunctionComponent, useContext } from "react";
 import { View } from "react-native";
 import { NativeRouter, Route, Routes } from "react-router-native";
 
+import Icon from "../components/Icon";
 import { Paths } from "../config";
 import Game from "../views/Game";
 import MainMenu from "../views/MainMenu";
@@ -18,12 +19,17 @@ const MainRouter: FunctionComponent<Props> = (props) => {
   const { onLayoutCallback } = props;
 
   return (
-    <View style={{...context.container}} onLayout={onLayoutCallback}>
+    <View style={{...context.theme.container}} onLayout={onLayoutCallback}>
       <NativeRouter>
         <Routes>
           <Route path={Paths.MainMenu} element={<MainMenu/>}/>
           <Route path={Paths.Game} element={<Game/>}/>
         </Routes>
+        <Icon
+          src={require("../assets/img/menu_icon.png")}
+          style={context.theme.mainMenuIconWrapper}
+          imgStyle={context.theme.mainMenuIconImg}
+        />
       </NativeRouter>
     </View>
   );

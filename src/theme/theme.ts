@@ -1,14 +1,14 @@
 import { Dimensions } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 
-import { ContextInterface } from "../types";
+import { ThemeInterface } from "../types";
 
 import { Font, FontSize, Palette } from "./default";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-export const theme : ContextInterface = {
+export const theme : ThemeInterface = {
   container: {
     flex: 1,
     position: "relative",
@@ -59,5 +59,15 @@ export const theme : ContextInterface = {
     transform: [
       { translateY: windowHeight * 0.036 }
     ]
+  },
+  mainMenuIconWrapper: {
+    position: "absolute",
+    top: "5%",
+    left: "2%"
+  },
+  mainMenuIconImg: {
+    width: windowWidth * 0.10,
+    height: windowHeight * 0.15,
+    resizeMode: "contain",
   }
 };

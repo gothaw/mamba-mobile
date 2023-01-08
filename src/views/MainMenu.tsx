@@ -16,13 +16,13 @@ const MainMenu: FunctionComponent<Props> = () => {
 
   return (
     <BackgroundGradient>
-      <View style={{...context.viewWrapper}}>
-        <Logo style={context.mainMenuLogo} />
+      <View style={{...context.theme.viewWrapper}}>
+        <Logo style={context.theme.mainMenuLogo} />
         <Button
           text={capitalizeFirstLetter(Texts.Start)}
           linkTo={Paths.Game}
-          style={context.mainMenuButton}
-          textStyle={context.mainMenuButtonText}
+          style={context.theme.mainMenuButton}
+          textStyle={context.theme.mainMenuButtonText}
         />
       </View>
     </BackgroundGradient>

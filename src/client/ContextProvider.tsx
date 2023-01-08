@@ -11,7 +11,7 @@ const Context = createContext<ContextInterface | null>(null);
 
 const ContextProvider: FunctionComponent<Props> = ({children}) => {
   return (
-    <Context.Provider value={theme}>
+    <Context.Provider value={{ theme }}>
       {children}
     </Context.Provider>
   );
