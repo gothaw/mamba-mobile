@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { Context } from "../client/ContextProvider";
 import Button from "../components/Button";
 import Image from "../components/Image";
-import { Paths, Texts } from "../config";
+import { Images, Paths, Texts } from "../config";
 import BackgroundGradient from "../containers/BackgroundGradient";
 import { capitalizeFirstLetter } from "../util";
 
@@ -20,15 +20,15 @@ const MainMenu: FunctionComponent<Props> = () => {
         <Image
           style={context.theme.mainMenuLeftWeb}
           imgStyle={context.theme.mainMenuWebImg}
-          src={require("../assets/img/spider_web.png")}
+          src={Images.MenuWeb}
         />
         <Image
           style={context.theme.mainMenuRightWeb}
           imgStyle={context.theme.mainMenuWebImg}
-          src={require("../assets/img/spider_web.png")}
+          src={Images.MenuWeb}
         />
         <Image
-          src={require("../assets/img/mamba_logo_color.png")}
+          src={Images.MambaLogo}
           imgStyle={context.theme.mainMenuLogo}
         />
         <Button

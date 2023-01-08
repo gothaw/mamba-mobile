@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
+import { Fonts } from "../config/assets";
+
 interface UseSplashScreenInterface {
   isAppReady: boolean
   onLayoutCallback: () => void
@@ -16,7 +18,7 @@ export const useAppLauncher = (): UseSplashScreenInterface => {
   useEffect(() => {
     const prepare = async () => {
       await Font.loadAsync({
-        "Luckiest-Guy": require("../assets/fonts/LuckiestGuy-Regular.ttf")
+        "Luckiest-Guy": Fonts.LuckiestGuy
       });
     };
 

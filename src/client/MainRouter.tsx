@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { NativeRouter, Route, Routes } from "react-router-native";
 
 import Icon from "../components/Icon";
-import { Paths } from "../config";
+import { Images, Paths } from "../config";
 import Game from "../views/Game";
 import MainMenu from "../views/MainMenu";
 
@@ -26,7 +26,7 @@ const MainRouter: FunctionComponent<Props> = (props) => {
           <Route path={Paths.Game} element={<Game/>}/>
         </Routes>
         <Icon
-          src={require("../assets/img/menu_icon.png")}
+          src={Images.MenuIcon}
           style={context.theme.mainMenuIconWrapper}
           imgStyle={context.theme.mainMenuIconImg}
         />
