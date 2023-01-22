@@ -33,7 +33,7 @@ export const theme : ThemeInterface = {
     height: "15%",
     width: "25%",
     // Shadow
-    shadowColor: "#000",
+    shadowColor: Palette.Black,
     shadowOffset: {
       width: 0,
       height: 5,
@@ -52,7 +52,7 @@ export const theme : ThemeInterface = {
     fontFamily: Font.LuckiestGuy,
     fontSize: RFValue(FontSize.L),
     letterSpacing: 1.5,
-    textShadowColor: "rgba(0, 0, 0, 1)",
+    textShadowColor: Palette.Black,
     textShadowOffset: {width: -1.5, height: 1.5},
     textShadowRadius: 1,
     lineHeight: RFValue(FontSize.L),
@@ -63,7 +63,7 @@ export const theme : ThemeInterface = {
   mainMenuIconWrapper: {
     position: "absolute",
     top: "5%",
-    left: "2%"
+    right: "5%"
   },
   mainMenuIconImg: {
     width: windowWidth * 0.10,
@@ -83,6 +83,37 @@ export const theme : ThemeInterface = {
   mainMenuWebImg: {
     width: windowWidth,
     height: windowHeight,
-    resizeMode: "contain",
+    resizeMode: "contain"
+  },
+  gameWrapper: {
+    width: "80%",
+    height: "100%",
+    position: "absolute",
+    top: 0,
+    left: 0
+  },
+  gameBackgroundImg: {
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    // Shadow
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    elevation: 20,
+    borderWidth: 4,
+    borderColor: Palette.Grey
+  },
+  gameCanvas: {
+    width: "100%",
+    height: "100%",
+    borderWidth: 4,
+    borderColor: Palette.Grey
   }
 };

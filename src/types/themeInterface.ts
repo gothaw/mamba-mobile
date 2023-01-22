@@ -7,7 +7,10 @@ export interface ThemeInterface {
   mainMenuIconWrapper?: object,
   mainMenuIconLink?: object,
   mainMenuIconImg?: object,
-  mainMenuLeftWeb: object,
-  mainMenuRightWeb: object,
-  mainMenuWebImg: object
+  mainMenuLeftWeb?: object,
+  mainMenuRightWeb?: object,
+  mainMenuWebImg?: object,
+  gameBackgroundImg?: object,
+  gameCanvas?: object,
+  gameWrapper?: object
 }

@@ -17,7 +17,7 @@ const BackgroundGradient: FunctionComponent<Props> = (props) => {
   return (
     <LinearGradient
       style={{...context.theme.container}}
-      colors={[`${Palette.LightGreen}`, `${Palette.Green}`]}
+      colors={[`${Palette.BackgroundLightGreen}`, `${Palette.BackgroundGreen}`]}
       start={{ x: 0, y: 0}}
       end={{ x: 0.25, y: 1.0}}
     >
