@@ -6,7 +6,7 @@ import { mainMenuTheme } from "./views/mainMenuTheme";
 export const theme : ThemeInterface = {
   container: {
     flex: 1,
-    position: "relative",
+    position: "relative"
   },
   viewWrapper: {
     flex: 1,
