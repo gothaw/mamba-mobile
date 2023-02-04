@@ -79,4 +79,7 @@ dist/
 # Jest
 coverage
 
+# Husky
+.husky
+
 # @end expo-cli
