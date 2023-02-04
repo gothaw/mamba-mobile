@@ -76,4 +76,7 @@ android/
 .expo/
 dist/
 
+# Jest
+coverage
+
 # @end expo-cli

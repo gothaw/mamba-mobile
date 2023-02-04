@@ -25,7 +25,7 @@ export const useAppLauncher = (): UseSplashScreenInterface => {
     prepare().then(() => {
       setIsAppReady(true);
     }).catch(e => {
-      console.error("There was an error when loading: ", e);
+      console.log("There was an error when loading: ", e);
     });
   }, []);
 
