@@ -3,3 +3,4 @@ babel.config.js
 index.js
 metro.config.js
 jest.config.js
+testSetup.js

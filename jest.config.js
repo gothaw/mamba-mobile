@@ -14,5 +14,5 @@ module.exports = {
     testEnvironment: "node",
     testRegex: "/.*\\.(test|spec)?\\.(ts|tsx)$",
     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-    setupFilesAfterEnv: ["@testing-library/jest-native/extend-expect"]
+    setupFilesAfterEnv: ["./testSetup.js", "@testing-library/jest-native/extend-expect"]
 };

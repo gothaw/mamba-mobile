@@ -10,9 +10,6 @@ interface UseSplashScreenInterface {
 }
 
 export const useAppLauncher = (): UseSplashScreenInterface => {
-  // Keep the splash screen visible while we fetch resources
-  // SplashScreen.preventAutoHideAsync();
-
   const [isAppReady, setIsAppReady] = useState(false);
 
   useEffect(() => {
