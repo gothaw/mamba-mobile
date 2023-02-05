@@ -1,15 +1,15 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as Font from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
 
 import { Fonts } from "../config/assets";
 
 interface UseSplashScreenInterface {
   isAppReady: boolean
-  onLayoutCallback: () => void
 }
 
-export const useAppLauncher = (): UseSplashScreenInterface => {
+type hideSplashScreen = () => void;
+
+export const useAppLauncher = (hideSplashScreen: hideSplashScreen): UseSplashScreenInterface => {
   const [isAppReady, setIsAppReady] = useState(false);
 
   useEffect(() => {
@@ -26,12 +26,11 @@ export const useAppLauncher = (): UseSplashScreenInterface => {
     });
   }, []);
 
-  const onLayoutRootView = useCallback(async () => {
-    await SplashScreen.hideAsync();
+  useEffect(() => {
+    if (isAppReady) {
+      hideSplashScreen();
+    }
   }, [isAppReady]);
 
-  return {
-    isAppReady,
-    onLayoutCallback: onLayoutRootView
-  };
+  return { isAppReady };
 };

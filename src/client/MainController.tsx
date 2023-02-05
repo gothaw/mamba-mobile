@@ -1,3 +1,5 @@
+import * as SplashScreen from "expo-splash-screen";
+
 import { useAppLauncher } from "../hooks/useAppLauncher";
 
 import { ContextProvider } from "./ContextProvider";
@@ -5,10 +7,7 @@ import MainRouter from "./MainRouter";
 
 const MainController = () => {
 
-  const {
-    isAppReady,
-    onLayoutCallback
-  } = useAppLauncher();
+  const { isAppReady } = useAppLauncher(SplashScreen.hideAsync);
 
   if (!isAppReady) {
     return null;
@@ -16,7 +15,7 @@ const MainController = () => {
 
   return (
     <ContextProvider>
-      <MainRouter onLayoutCallback={onLayoutCallback}/>
+      <MainRouter />
     </ContextProvider>
   );
 };

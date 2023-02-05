@@ -4,32 +4,33 @@ import { useAppLauncher } from "../useAppLauncher";
 
 describe("useAppLauncher", () => {
   let hook;
+  const callback = jest.fn();
 
   beforeEach(async () => {
-    hook = renderHook(useAppLauncher);
+    hook = renderHook(() => useAppLauncher(callback));
   });
 
   afterEach(async () => {
     hook = null;
   });
 
-  it("should have correct initial state", async () => {
-    const { isAppReady, onLayoutCallback } = hook.result.current;
+  it("should have correct initial state and callback has not been called", async () => {
+    const { isAppReady } = hook.result.current;
 
     expect(isAppReady).toBe(false);
-    expect(onLayoutCallback).toBeFunction();
+    expect(callback).not.toHaveBeenCalled();
   });
 
-  it("should update isAppReady when mounted", async () => {
+  it("should update isAppReady when assets are loaded and callback was called", async () => {
     await act(async () => {
       await new Promise(resolve => setImmediate(resolve));
     });
 
     await waitFor(() => {
-      const { isAppReady, onLayoutCallback } = hook.result.current;
+      const { isAppReady } = hook.result.current;
 
       expect(isAppReady).toBe(true);
-      expect(onLayoutCallback).toBeFunction();
+      expect(callback).toHaveBeenCalled();
     });
   });
 });
