@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Text } from "react-native";
 import { render, waitFor } from "@testing-library/react-native";
 
 import { Context, ContextProvider } from "../ContextProvider";
@@ -6,7 +7,7 @@ import { Context, ContextProvider } from "../ContextProvider";
 const TestComponent = () => {
   const context = useContext(Context);
 
-  return <div style={{...context.theme.container}}>Component</div>;
+  return <Text testID={"component"} style={{...context.theme.container}}>Component</Text>;
 };
 
 const setup = () => {
@@ -18,26 +19,28 @@ const setup = () => {
 };
 
 describe("ContextProvider", () => {
-  let component;
+  let wrapper;
   beforeEach(() => {
-    component = setup();
+    wrapper = setup();
   });
 
   it("should render", async () => {
     await waitFor(() => {
-      expect(component.toJSON()).toBeTruthy();
+      expect(wrapper.toJSON()).toMatchSnapshot();
     });
   });
 
   it("should render TestComponent", async () => {
+    const testComponent = await wrapper.findByTestId("component");
+
     await waitFor(() => {
-      expect(component.toJSON().children.toString()).toBe("Component");
+      expect(testComponent).toBeTruthy();
     });
   });
 
   it("should render TestComponent with correct styling", async () => {
     await waitFor(() => {
-      expect(component.toJSON().props.style).toStrictEqual({ flex: 1, position: "relative" });
+      expect(wrapper.toJSON().props.style).toStrictEqual({flex: 1, position: "relative"});
     });
   });
 });

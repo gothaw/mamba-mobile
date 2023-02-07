@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContextProvider should render 1`] = `
+<Text
+  style={
+    {
+      "flex": 1,
+      "position": "relative",
+    }
+  }
+  testID="component"
+>
+  Component
+</Text>
+`;

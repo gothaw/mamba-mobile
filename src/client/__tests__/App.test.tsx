@@ -7,7 +7,7 @@ describe("App", () => {
     const app  = render(<App/>);
 
     await waitFor(() => {
-      expect(app.toJSON()).toBeTruthy();
+      expect(app.toJSON()).toMatchSnapshot();
     });
   });
 });

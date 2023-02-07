@@ -11,7 +11,7 @@ describe("MainController", () => {
 
   it("should render without crashing", async () => {
     await waitFor(() => {
-      expect(component.toJSON()).toBeTruthy();
+      expect(component.toJSON()).toMatchSnapshot();
     });
   });
 
