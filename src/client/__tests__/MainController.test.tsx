@@ -1,21 +1,25 @@
-import { render, waitFor } from "@testing-library/react-native";
+import { act, render, waitFor } from "@testing-library/react-native";
 
 import MainController from "../MainController";
 
 describe("MainController", () => {
-  let component;
+  let router;
 
-  beforeEach(() => {
-    component = render(<MainController/>);
+  beforeAll(async () => {
+    router = render(<MainController/>);
+
+    await act(async () => {
+      await new Promise(resolve => setImmediate(resolve));
+    });
   });
 
   it("should render without crashing", async () => {
     await waitFor(() => {
-      expect(component.toJSON()).toMatchSnapshot();
+      expect(router.toJSON()).toMatchSnapshot();
     });
   });
 
   it("should not render if not ready", () => {
-    expect(component.toJSON()).toBe(null);
+    expect(router.toJSON()).toBe(null);
   });
 });

@@ -1,3 +1,196 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should render without crashing 1`] = `null`;
+exports[`App should render without crashing 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+      "position": "relative",
+    }
+  }
+>
+  <ViewManagerAdapter_ExpoLinearGradient
+    proxiedProperties={
+      {
+        "colors": [
+          4290491705,
+          4287202352,
+        ],
+        "endPoint": [
+          0.25,
+          1,
+        ],
+        "locations": undefined,
+        "startPoint": [
+          0,
+          0,
+        ],
+      }
+    }
+    style={
+      {
+        "flex": 1,
+        "position": "relative",
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+          "position": "relative",
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "left": -300,
+            "position": "absolute",
+            "top": -400.2,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            {
+              "height": 1334,
+              "resizeMode": "contain",
+              "width": 750,
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          {
+            "bottom": -400.2,
+            "position": "absolute",
+            "right": -300,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            {
+              "height": 1334,
+              "resizeMode": "contain",
+              "width": 750,
+            }
+          }
+        />
+      </View>
+      <View
+        style={{}}
+      >
+        <Image
+          source={1}
+          style={
+            {
+              "height": 667,
+              "resizeMode": "contain",
+              "width": 375,
+            }
+          }
+        />
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "backgroundColor": "#3b8686",
+            "borderColor": "#ffe100",
+            "borderRadius": 15,
+            "borderWidth": 4,
+            "elevation": 10,
+            "height": "15%",
+            "marginTop": 15,
+            "shadowColor": "#000000",
+            "shadowOffset": {
+              "height": 5,
+              "width": 0,
+            },
+            "shadowOpacity": 0.34,
+            "shadowRadius": 6.27,
+            "width": "25%",
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "boxSizing": "border-box",
+              "color": "#ffe100",
+              "fontFamily": "Luckiest-Guy",
+              "fontSize": 63,
+              "height": 63,
+              "letterSpacing": 1.5,
+              "lineHeight": 63,
+              "margin": 0,
+              "padding": 0,
+              "textAlign": "center",
+              "textShadowColor": "#000000",
+              "textShadowOffset": {
+                "height": 1.5,
+                "width": -1.5,
+              },
+              "textShadowRadius": 1,
+              "transform": [
+                {
+                  "translateY": 48.023999999999994,
+                },
+              ],
+            }
+          }
+        >
+          Start
+        </Text>
+      </View>
+    </View>
+  </ViewManagerAdapter_ExpoLinearGradient>
+  <View
+    style={
+      {
+        "position": "absolute",
+        "right": "5%",
+        "top": "5%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <Image
+        source={1}
+        style={
+          {
+            "height": 200.1,
+            "resizeMode": "contain",
+            "width": 75,
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
