@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MainController should render without crashing 1`] = `
+exports[`MainRouter should render 1`] = `
 <View
   style={
     {

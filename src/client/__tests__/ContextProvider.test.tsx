@@ -30,16 +30,11 @@ describe("ContextProvider", () => {
     });
   });
 
-  it("should render TestComponent", async () => {
+  it("should render TestComponent with correct styling", async () => {
     const testComponent = await wrapper.findByTestId("component");
 
     await waitFor(() => {
       expect(testComponent).toBeTruthy();
-    });
-  });
-
-  it("should render TestComponent with correct styling", async () => {
-    await waitFor(() => {
       expect(wrapper.toJSON().props.style).toStrictEqual({flex: 1, position: "relative"});
     });
   });

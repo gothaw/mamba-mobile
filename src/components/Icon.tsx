@@ -4,19 +4,20 @@ import { Link } from "react-router-native";
 
 interface OwnProps {
   src: ImageSourcePropType,
+  testId: string
   style?: object,
-  imgStyle?: object
+  imgStyle?: object,
 }
 
 type Props = OwnProps;
 
 const Icon: FunctionComponent<Props> = (props) => {
-  const { src, style, imgStyle } = props;
+  const { src, style, imgStyle, testId } = props;
 
   return (
     <View style={{...style}}>
       <Link to={"/"} underlayColor={"none"}>
-        <Image source={src} style={{...imgStyle}} />
+        <Image testID={testId} source={src} style={{...imgStyle}} />
       </Link>
     </View>
   );

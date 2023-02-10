@@ -3,23 +3,21 @@ import { act, render, waitFor } from "@testing-library/react-native";
 import MainController from "../MainController";
 
 describe("MainController", () => {
-  let router;
-
-  beforeAll(async () => {
-    router = render(<MainController/>);
+  it("should render without crashing", async () => {
+    const component = render(<MainController/>);
 
     await act(async () => {
       await new Promise(resolve => setImmediate(resolve));
     });
-  });
 
-  it("should render without crashing", async () => {
     await waitFor(() => {
-      expect(router.toJSON()).toMatchSnapshot();
+      expect(component.toJSON()).toMatchSnapshot();
     });
   });
 
   it("should not render if not ready", () => {
-    expect(router.toJSON()).toBe(null);
+    const component = render(<MainController/>);
+
+    expect(component.toJSON()).toBe(null);
   });
 });

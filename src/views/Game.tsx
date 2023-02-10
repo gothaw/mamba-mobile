@@ -4,6 +4,7 @@ import Canvas from "react-native-canvas";
 
 import { Context } from "../client/ContextProvider";
 import { Images } from "../config";
+import { TestIds } from "../config/constants";
 import BackgroundGradient from "../containers/BackgroundGradient";
 
 interface Props {
@@ -30,7 +31,7 @@ const Game: FunctionComponent<Props> = () => {
 
   return (
     <BackgroundGradient>
-      <View style={{...context.theme.viewWrapper}}>
+      <View testID={TestIds.Game} style={{...context.theme.viewWrapper}}>
         <View style={{...context.theme.gameWrapper}}>
           <ImageBackground
             source={Images.GameBackground}

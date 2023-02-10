@@ -4,6 +4,7 @@ import { NativeRouter, Route, Routes } from "react-router-native";
 
 import Icon from "../components/Icon";
 import { Images, Paths } from "../config";
+import { TestIds } from "../config/constants";
 import Game from "../views/Game";
 import MainMenu from "../views/MainMenu";
 
@@ -27,6 +28,7 @@ const MainRouter: FunctionComponent<Props> = () => {
           src={Images.MenuIcon}
           style={context.theme.mainMenuIconWrapper}
           imgStyle={context.theme.mainMenuIconImg}
+          testId={TestIds.MenuIcon}
         />
       </NativeRouter>
     </View>

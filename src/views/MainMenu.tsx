@@ -5,6 +5,7 @@ import { Context } from "../client/ContextProvider";
 import Button from "../components/Button";
 import Image from "../components/Image";
 import { Images, Paths, Texts } from "../config";
+import { TestIds } from "../config/constants";
 import BackgroundGradient from "../containers/BackgroundGradient";
 import { capitalizeFirstLetter } from "../util";
 
@@ -16,7 +17,7 @@ const MainMenu: FunctionComponent<Props> = () => {
 
   return (
     <BackgroundGradient>
-      <View style={{...context.theme.viewWrapper}}>
+      <View testID={TestIds.MainMenu} style={{...context.theme.viewWrapper}}>
         <Image
           style={context.theme.mainMenuLeftWeb}
           imgStyle={context.theme.mainMenuWebImg}
