@@ -6,7 +6,7 @@ import Game from "../Game";
 
 describe("Game", () => {
   it("should render without crashing", async () => {
-    const menu = render(
+    const game = render(
       <ContextProvider>
         <NativeRouter>
           <Routes>
@@ -21,7 +21,7 @@ describe("Game", () => {
     });
 
     await waitFor(() => {
-      expect(menu.toJSON()).toMatchSnapshot();
+      expect(game.toJSON()).toMatchSnapshot();
     });
   });
 });
