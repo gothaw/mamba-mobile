@@ -13,7 +13,7 @@ const Button: FunctionComponent<Props> = (props) => {
   const {text, linkTo, style, textStyle} = props;
 
   return (
-    <Link to={linkTo} style={{...style}} underlayColor={"none"}>
+    <Link to={linkTo} style={{...style}} underlayColor={"none"} testID={text.toLowerCase()}>
       <Text style={{...textStyle}}>{text}</Text>
     </Link>
   );

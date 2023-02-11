@@ -43,6 +43,7 @@ exports[`App should render without crashing 1`] = `
           "position": "relative",
         }
       }
+      testID="main-menu"
     >
       <View
         style={
@@ -189,6 +190,7 @@ exports[`App should render without crashing 1`] = `
             "width": 75,
           }
         }
+        testID="menu-icon"
       />
     </View>
   </View>

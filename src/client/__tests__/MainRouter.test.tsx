@@ -1,4 +1,5 @@
-import { act, render, waitFor } from "@testing-library/react-native";
+import React from "react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
 
 import { TestIds } from "../../config/constants";
 import { ContextProvider } from "../ContextProvider";
@@ -7,13 +8,14 @@ import MainRouter from "../MainRouter";
 const setup = () => {
   return render(
     <ContextProvider>
-      <MainRouter />
+      <MainRouter/>
     </ContextProvider>
   );
 };
 
 describe("MainRouter", () => {
   let wrapper;
+
   beforeEach(async () => {
     wrapper = setup();
 
@@ -21,54 +23,44 @@ describe("MainRouter", () => {
       await new Promise(resolve => setImmediate(resolve));
     });
   });
-  
-  it("should render", async () => {
-    expect(wrapper.toJSON()).toMatchSnapshot();
-  });
 
-  describe(("on main menu"), () => {
-    it("should display main menu and menu icon", async () => {
-      const mainMenu = await wrapper.getByTestId(TestIds.MainMenu);
-      const icon = await wrapper.findByTestId(TestIds.MenuIcon);
-
-      await waitFor(() => {
-        expect(icon).toBeTruthy();
-        expect(mainMenu).toBeTruthy();
-      });
+  it("should render and display menu icon", async () => {
+    await waitFor(() => {
+      expect(wrapper.toJSON()).toMatchSnapshot();
     });
   });
 
-  describe(("in game"), () => {
-    it("should display game and menu icon", async () => {
+  it("should render icon and main menu", async () => {
+    const icon = await wrapper.findByTestId(TestIds.MenuIcon);
+    const mainMenu = await wrapper.findByTestId(TestIds.MainMenu);
 
-      const startBtn = await wrapper.getByTestId("start");
-
-      await act(async () => {
-        await new Promise(resolve => setImmediate(resolve));
-      });
-
-      // const click = new MouseEvent("press");
-      // Object.assign(click, {preventDefault: jest.fn()});
-
-      // fireEvent(startBtn, "press");
-
-      await act(async () => {
-        await new Promise(resolve => setImmediate(resolve));
-      });
-
-      const game = await wrapper.findByTestId(TestIds.Game);
-      const icon = await wrapper.findByTestId(TestIds.MenuIcon);
-
-      await waitFor(() => {
-        console.log(startBtn);
-
-        expect(game).toBeTruthy();
-        expect(icon).toBeTruthy();
-      });
+    await waitFor(() => {
+      expect(icon).toBeTruthy();
+      expect(mainMenu).toBeTruthy();
     });
+  });
 
-    // it("should go back to", () => {
-    //
-    // });
+  it("should render icon and game when start is clicked", async () => {
+    const link = await wrapper.findByTestId("start");
+    const icon = await wrapper.findByTestId(TestIds.MenuIcon);
+
+    const mockEvent = {
+      preventDefault: jest.fn(),
+      defaultPrevented: false
+    };
+
+    fireEvent.press(link, mockEvent);
+
+    const game = await wrapper.findByTestId(TestIds.Game);
+
+    await waitFor(() => {
+      expect(icon).toBeTruthy();
+      expect(game).toBeTruthy();
+    });
+  });
+
+  it("should go back from the game using notification menu", async () => {
+    // todo To be implemented
+    expect(0).toBe(0);
   });
 });

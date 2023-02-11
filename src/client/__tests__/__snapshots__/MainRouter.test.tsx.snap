@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MainRouter should render 1`] = `
+exports[`MainRouter should render and display menu icon 1`] = `
 <View
   style={
     {
@@ -128,6 +128,7 @@ exports[`MainRouter should render 1`] = `
             "width": "25%",
           }
         }
+        testID="start"
       >
         <Text
           style={
