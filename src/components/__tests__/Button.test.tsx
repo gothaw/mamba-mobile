@@ -8,9 +8,9 @@ import Button from "../Button";
 describe("Button", () => {
   let router;
   const style = {
-    borderWidth: 2,
-    borderColor: "#ff0000",
     backgroundColor: "#ffe100",
+    borderColor: "#ff0000",
+    borderWidth: 2,
     width: "25%"
   };
   const textStyle = {
@@ -53,8 +53,8 @@ describe("Button", () => {
     const link = router.getByTestId("click me");
 
     const mockEvent = {
-      preventDefault: jest.fn(),
-      defaultPrevented: false
+      defaultPrevented: false,
+      preventDefault: jest.fn()
     };
 
     fireEvent.press(link, mockEvent);

@@ -9,8 +9,8 @@ export const theme : ThemeInterface = {
     position: "relative"
   },
   viewWrapper: {
-    flex: 1,
     alignItems: "center",
+    flex: 1,
     justifyContent: "center",
     position: "relative"
   },

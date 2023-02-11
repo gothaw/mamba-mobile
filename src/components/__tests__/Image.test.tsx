@@ -7,13 +7,13 @@ import Image from "../Image";
 describe("Image", () => {
   const style = {
     position: "absolute",
-    top: 0,
-    right: 0
+    right: 0,
+    top: 0
   };
   const imgStyle = {
-    width: 100,
     height: 100,
-    resizeMode: "contain"
+    resizeMode: "contain",
+    width: 100
   };
 
   it("should render with correct styling and src", async () => {

@@ -7,62 +7,65 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 export const mainMenuTheme = {
-  mainMenuLogo: {
-    width: windowWidth * 0.5,
-    height: windowHeight * 0.5,
-    resizeMode: "contain"
-  },
   mainMenuButton: {
-    marginTop: 15,
-    borderWidth: 4,
-    borderColor: Palette.Yellow,
     backgroundColor: Palette.DarkGreen,
+    borderColor: Palette.Yellow,
     borderRadius: 15,
+    borderWidth: 4,
     height: "15%",
+    marginTop: 15,
     width: "25%",
     ...backgroundShadow
   },
   mainMenuButtonText: {
-    height: RFValue(FontSize.L),
     boxSizing: "border-box",
-    textAlign: "center",
-    padding: 0,
-    margin: 0,
     color: Palette.Yellow,
     fontFamily: Font.LuckiestGuy,
     fontSize: RFValue(FontSize.L),
+    height: RFValue(FontSize.L),
     letterSpacing: 1.5,
-    textShadowColor: Palette.Black,
-    textShadowOffset: {width: -1.5, height: 1.5},
-    textShadowRadius: 1,
     lineHeight: RFValue(FontSize.L),
+    margin: 0,
+    padding: 0,
+    textAlign: "center",
+    textShadowColor: Palette.Black,
+    textShadowOffset: {
+      height: 1.5,
+      width: -1.5
+    },
+    textShadowRadius: 1,
     transform: [
       { translateY: windowHeight * 0.036 }
     ]
   },
-  mainMenuIconWrapper: {
-    position: "absolute",
-    top: "5%",
-    right: "5%"
-  },
   mainMenuIconImg: {
-    width: windowWidth * 0.10,
     height: windowHeight * 0.15,
     resizeMode: "contain",
+    width: windowWidth * 0.10
+  },
+  mainMenuIconWrapper: {
+    position: "absolute",
+    right: "5%",
+    top: "5%"
   },
   mainMenuLeftWeb: {
+    left: -0.4 * windowWidth,
     position: "absolute",
-    top: -0.3 * windowHeight,
-    left: -0.4 * windowWidth
+    top: -0.3 * windowHeight
+  },
+  mainMenuLogo: {
+    height: windowHeight * 0.5,
+    resizeMode: "contain",
+    width: windowWidth * 0.5
   },
   mainMenuRightWeb: {
-    position: "absolute",
     bottom: -0.3 * windowHeight,
+    position: "absolute",
     right: -0.4 * windowWidth
   },
   mainMenuWebImg: {
-    width: windowWidth,
     height: windowHeight,
-    resizeMode: "contain"
+    resizeMode: "contain",
+    width: windowWidth
   }
 };

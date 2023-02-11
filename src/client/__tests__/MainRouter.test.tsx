@@ -45,8 +45,8 @@ describe("MainRouter", () => {
     const icon = await wrapper.findByTestId(TestIds.MenuIcon);
 
     const mockEvent = {
-      preventDefault: jest.fn(),
-      defaultPrevented: false
+      defaultPrevented: false,
+      preventDefault: jest.fn()
     };
 
     fireEvent.press(link, mockEvent);

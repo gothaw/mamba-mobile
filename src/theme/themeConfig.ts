@@ -24,12 +24,12 @@ export enum Font {
 }
 
 export const backgroundShadow = {
+  elevation: 10,
   shadowColor: Palette.Black,
   shadowOffset: {
-    width: 0,
     height: 5,
+    width: 0
   },
   shadowOpacity: 0.34,
-  shadowRadius: 6.27,
-  elevation: 10,
+  shadowRadius: 6.27
 };
