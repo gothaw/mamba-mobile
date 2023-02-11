@@ -5,7 +5,7 @@ import { act, render } from "@testing-library/react-native";
 import { Images } from "../../config";
 import Icon from "../Icon";
 
-describe("Button", () => {
+describe("Icon", () => {
   let router;
   const style = {
     position: "absolute",
