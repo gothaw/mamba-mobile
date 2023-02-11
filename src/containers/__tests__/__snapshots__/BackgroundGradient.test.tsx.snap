@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackgroundGradient should render without crashing 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  proxiedProperties={
+    {
+      "colors": [
+        4290491705,
+        4287202352,
+      ],
+      "endPoint": [
+        0.25,
+        1,
+      ],
+      "locations": undefined,
+      "startPoint": [
+        0,
+        0,
+      ],
+    }
+  }
+  style={
+    {
+      "flex": 1,
+      "position": "relative",
+    }
+  }
+>
+  <Text>
+    Test
+  </Text>
+</ViewManagerAdapter_ExpoLinearGradient>
+`;

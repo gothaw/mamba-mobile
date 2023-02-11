@@ -8,7 +8,6 @@ type Props = {
   children: React.ReactNode
 };
 
-
 const BackgroundGradient: FunctionComponent<Props> = (props) => {
 
   const { children } = props;
