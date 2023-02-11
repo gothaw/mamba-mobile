@@ -4,7 +4,7 @@ import { Link } from "react-router-native";
 
 interface OwnProps {
   src: ImageSourcePropType,
-  testId: string
+  testId?: string
   style?: object,
   imgStyle?: object,
 }
