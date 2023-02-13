@@ -6,6 +6,7 @@ export enum Texts {
 export enum TestIds {
   MainLogo = "main-logo",
   MainMenu = "main-menu",
+  MenuIcon = "menu-icon",
   Game = "game",
-  MenuIcon = "menu-icon"
+  Spider = "spider"
 }

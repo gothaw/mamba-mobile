@@ -12,5 +12,7 @@ export interface ThemeInterface {
   mainMenuWebImg?: object,
   gameBackgroundImg?: object,
   gameCanvas?: object,
+  gameControls?: object,
+  gameEngine?: object,
   gameWrapper?: object
 }

@@ -1,33 +1,41 @@
-import React, { FunctionComponent, useContext, useEffect, useRef } from "react";
+import React, { FunctionComponent, useContext, useRef, useState } from "react";
 import { ImageBackground, View } from "react-native";
-import Canvas from "react-native-canvas";
+import { GameEngine } from "react-native-game-engine";
 
 import { Context } from "../client/ContextProvider";
+import Controls from "../components/Controls";
+import Spider from "../components/Spider";
 import { Images } from "../config";
 import { TestIds } from "../config/constants";
 import BackgroundGradient from "../containers/BackgroundGradient";
+import { GameLoop } from "../systems/GameLoop";
 
 interface Props {
 }
 
+// todo Styling and view WIP
+
 const Game: FunctionComponent<Props> = () => {
-  const ref = useRef(null);
-
   const context = useContext(Context);
+  const ref = useRef(null);
+  const [x , setX] = useState(50);
+  const [y , setY] = useState(100);
 
-  useEffect(() => {
-    if (ref.current) {
-      const ctx = ref.current.getContext("2d");
-      ctx.globalAlpha = 0;
+  const handleUp = () => {
+    setY(prevState => prevState - 1);
+  };
 
-      if (ctx) {
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = "rgba(255, 255, 255, 0.0)";
-        ctx.fillRect(0, 0, 20, 20);
-        ctx.globalAlpha = 0;
-      }
-    }
-  }, [ref]);
+  const handleDown = () => {
+    setY(prevState => prevState + 1);
+  };
+
+  const handleLeft = () => {
+    setX(prevState => prevState - 1);
+  };
+
+  const handleRight = () => {
+    setX(prevState => prevState + 1);
+  };
 
   return (
     <BackgroundGradient>
@@ -35,11 +43,24 @@ const Game: FunctionComponent<Props> = () => {
         <View style={{...context.theme.gameWrapper}}>
           <ImageBackground
             source={Images.GameBackground}
-            style={{...context.theme.gameBackgroundImg}}/>
-          <Canvas
+            style={{...context.theme.gameBackgroundImg}}
+          />
+          <GameEngine
             ref={ref}
-            style={{...context.theme.gameCanvas}}/>
+            style={{...context.theme.gameEngine}}
+            entities={{
+              spider: { position: [200, 200], renderer: <Spider />, speedX: 1, speedY: 0 }
+            }}
+            systems={[ GameLoop ]}
+          />
         </View>
+
+        <Controls
+          handleUp={handleUp}
+          handleDown={handleDown}
+          handleLeft={handleLeft}
+          handleRight={handleRight}
+        />
       </View>
     </BackgroundGradient>
   );

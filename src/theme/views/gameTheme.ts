@@ -1,4 +1,4 @@
-import { backgroundShadow,Palette } from "../themeConfig";
+import { backgroundShadow, Palette } from "../themeConfig";
 
 export const gameTheme = {
   gameBackgroundImg: {
@@ -11,9 +11,15 @@ export const gameTheme = {
     width: "100%",
     ...backgroundShadow
   },
-  gameCanvas: {
+  gameControls: {
+    bottom: 0,
+    position: "absolute",
+    right: 0
+  },
+  gameEngine: {
     borderColor: Palette.Grey,
     borderWidth: 4,
+    flex: null,
     height: "100%",
     width: "100%"
   },
