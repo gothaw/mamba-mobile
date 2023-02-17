@@ -8,5 +8,6 @@ export enum TestIds {
   MainMenu = "main-menu",
   MenuIcon = "menu-icon",
   Game = "game",
+  Snake = "snake",
   Spider = "spider"
 }

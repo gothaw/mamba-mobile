@@ -4,6 +4,7 @@ import { GameEngine } from "react-native-game-engine";
 
 import { Context } from "../client/ContextProvider";
 import Controls from "../components/Controls";
+import Snake from "../components/Snake";
 import Spider from "../components/Spider";
 import { Images } from "../config";
 import { TestIds } from "../config/constants";
@@ -49,6 +50,7 @@ const Game: FunctionComponent<Props> = () => {
             ref={ref}
             style={{...context.theme.gameEngine}}
             entities={{
+              snake: { position: [20, 20], renderer: <Snake />, speedX: 1, speedY: 0},
               spider: { position: [200, 200], renderer: <Spider />, speedX: 1, speedY: 0 }
             }}
             systems={[ GameLoop ]}
