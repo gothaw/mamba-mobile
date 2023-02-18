@@ -1,3 +1,8 @@
+import { Dimensions } from "react-native";
+
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
+
 export enum Texts {
   Start = "start",
   Mamba = "mamba"
@@ -10,4 +15,10 @@ export enum TestIds {
   Game = "game",
   Snake = "snake",
   Spider = "spider"
+}
+
+export enum Game {
+  Width = 0.8 * windowWidth,
+  Height = windowHeight,
+  Border = 10
 }

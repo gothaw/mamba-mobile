@@ -1,3 +1,4 @@
+import { Game } from "../../config/";
 import { backgroundShadow, Palette } from "../themeConfig";
 
 export const gameTheme = {
@@ -24,10 +25,10 @@ export const gameTheme = {
     width: "100%"
   },
   gameWrapper: {
-    height: "100%",
+    height: Game.Height,
     left: 0,
     position: "absolute",
     top: 0,
-    width: "80%"
+    width: Game.Width
   }
 };

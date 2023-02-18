@@ -1,5 +1,5 @@
 import { FunctionComponent, useContext } from "react";
-import { Button, View } from "react-native";
+import { Button, Text, TouchableOpacity, View } from "react-native";
 
 import { Context } from "../client/ContextProvider";
 
@@ -19,12 +19,20 @@ const Controls: FunctionComponent<Props> = (props) => {
   return (
     <View style={{...context.theme.gameControls}}>
       <View style={{ marginLeft: 50, width: 50 }}>
-        <Button title={"up"} onPress={handleUp}/>
+        <TouchableOpacity onPressIn={handleUp}>
+          <Text>Up</Text>
+        </TouchableOpacity>
       </View>
       <View style={{ flexDirection: "row" }}>
-        <Button title={"left"} onPress={handleLeft}/>
-        <Button title={"down"} onPress={handleDown}/>
-        <Button title={"right"} onPress={handleRight}/>
+        <TouchableOpacity onPressIn={handleLeft} onPressOut={() => {console.log("left button up");}}>
+          <Text>Left</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPressIn={handleDown}>
+          <Text>Down</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPressIn={handleRight}>
+          <Text>Right</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

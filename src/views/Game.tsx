@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext, useRef, useState } from "react";
+import React, { FunctionComponent, useContext, useEffect, useRef, useState } from "react";
 import { ImageBackground, View } from "react-native";
 import { GameEngine } from "react-native-game-engine";
 
@@ -6,10 +6,10 @@ import { Context } from "../client/ContextProvider";
 import Controls from "../components/Controls";
 import Snake from "../components/Snake";
 import Spider from "../components/Spider";
-import { Images } from "../config";
+import { Game as GameConfig, Images } from "../config";
 import { TestIds } from "../config/constants";
 import BackgroundGradient from "../containers/BackgroundGradient";
-import { GameLoop } from "../systems/GameLoop";
+import { GameLoop } from "../game/GameLoop";
 
 interface Props {
 }
@@ -18,25 +18,37 @@ interface Props {
 
 const Game: FunctionComponent<Props> = () => {
   const context = useContext(Context);
-  const ref = useRef(null);
-  const [x , setX] = useState(50);
-  const [y , setY] = useState(100);
+  const engineRef = useRef(null);
 
   const handleUp = () => {
-    setY(prevState => prevState - 1);
+    const engine = engineRef.current;
+
+    engine.dispatch({ type: "move-up" });
   };
 
   const handleDown = () => {
-    setY(prevState => prevState + 1);
+    const engine = engineRef.current;
+
+    engine.dispatch({ type: "move-down" });
   };
 
   const handleLeft = () => {
-    setX(prevState => prevState - 1);
+    const engine = engineRef.current;
+
+    engine.dispatch({ type: "move-left" });
   };
 
   const handleRight = () => {
-    setX(prevState => prevState + 1);
+    const engine = engineRef.current;
+
+    engine.dispatch({ type: "move-right" });
   };
+
+  useEffect(() => {
+    console.log("Width: ", GameConfig.Width);
+    console.log("Height: ", GameConfig.Height);
+  }, []);
+  
 
   return (
     <BackgroundGradient>
@@ -47,11 +59,21 @@ const Game: FunctionComponent<Props> = () => {
             style={{...context.theme.gameBackgroundImg}}
           />
           <GameEngine
-            ref={ref}
+            ref={ref => engineRef.current = ref}
             style={{...context.theme.gameEngine}}
             entities={{
-              snake: { position: [20, 20], renderer: <Snake />, speedX: 1, speedY: 0},
-              spider: { position: [200, 200], renderer: <Spider />, speedX: 1, speedY: 0 }
+              snake: {
+                position: [0, 0],
+                renderer: <Snake />,
+                speedX: -3,
+                speedY: 0
+              },
+              spider: {
+                position: [636.58, 396.43],
+                renderer: <Spider />,
+                speedX: 1,
+                speedY: 0
+              }
             }}
             systems={[ GameLoop ]}
           />
