@@ -1,8 +1,9 @@
 import { Images } from "./assets";
-import { Game, Texts } from "./constants";
+import { Events, Game, Texts } from "./constants";
 import { Paths } from "./paths";
 
 export {
+  Events,
   Game,
   Images,
   Paths,

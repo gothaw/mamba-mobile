@@ -1,4 +1,4 @@
-export class SnakeBoundary {
+export class Boundary {
   private readonly coordinates: number[][];
 
   constructor(coordinates: number[][]) {

@@ -22,3 +22,10 @@ export enum Game {
   Height = windowHeight,
   Border = 10
 }
+
+export enum Events {
+  Up = "up",
+  Down = "down",
+  Left = "left",
+  Right = "right"
+}

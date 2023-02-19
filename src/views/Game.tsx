@@ -14,41 +14,9 @@ import { GameLoop } from "../game/GameLoop";
 interface Props {
 }
 
-// todo Styling and view WIP
-
 const Game: FunctionComponent<Props> = () => {
   const context = useContext(Context);
-  const engineRef = useRef(null);
-
-  const handleUp = () => {
-    const engine = engineRef.current;
-
-    engine.dispatch({ type: "move-up" });
-  };
-
-  const handleDown = () => {
-    const engine = engineRef.current;
-
-    engine.dispatch({ type: "move-down" });
-  };
-
-  const handleLeft = () => {
-    const engine = engineRef.current;
-
-    engine.dispatch({ type: "move-left" });
-  };
-
-  const handleRight = () => {
-    const engine = engineRef.current;
-
-    engine.dispatch({ type: "move-right" });
-  };
-
-  useEffect(() => {
-    console.log("Width: ", GameConfig.Width);
-    console.log("Height: ", GameConfig.Height);
-  }, []);
-  
+  const [ engine, setEngine ] = useState(null);
 
   return (
     <BackgroundGradient>
@@ -59,7 +27,7 @@ const Game: FunctionComponent<Props> = () => {
             style={{...context.theme.gameBackgroundImg}}
           />
           <GameEngine
-            ref={ref => engineRef.current = ref}
+            ref={ref => setEngine(ref)}
             style={{...context.theme.gameEngine}}
             entities={{
               snake: {
@@ -71,20 +39,14 @@ const Game: FunctionComponent<Props> = () => {
               spider: {
                 position: [636.58, 396.43],
                 renderer: <Spider />,
-                speedX: 1,
+                speedX: 0,
                 speedY: 0
               }
             }}
             systems={[ GameLoop ]}
           />
         </View>
-
-        <Controls
-          handleUp={handleUp}
-          handleDown={handleDown}
-          handleLeft={handleLeft}
-          handleRight={handleRight}
-        />
+        <Controls engine={engine} />
       </View>
     </BackgroundGradient>
   );
