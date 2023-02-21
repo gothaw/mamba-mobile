@@ -135,7 +135,7 @@ exports[`Game should render without crashing 1`] = `
     <View
       style={
         {
-          "bottom": 0,
+          "bottom": "3%",
           "position": "absolute",
           "right": 0,
         }
@@ -144,8 +144,8 @@ exports[`Game should render without crashing 1`] = `
       <View
         style={
           {
-            "marginLeft": 50,
-            "width": 50,
+            "alignItems": "center",
+            "marginBottom": 15,
           }
         }
       >
@@ -162,13 +162,21 @@ exports[`Game should render without crashing 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             {
+              "marginLeft": 5,
               "opacity": 1,
             }
           }
         >
-          <Text>
-            Up
-          </Text>
+          <Image
+            source={1}
+            style={
+              {
+                "height": 133.4,
+                "resizeMode": "contain",
+                "width": 45,
+              }
+            }
+          />
         </View>
       </View>
       <View
@@ -191,13 +199,21 @@ exports[`Game should render without crashing 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             {
+              "marginLeft": 5,
               "opacity": 1,
             }
           }
         >
-          <Text>
-            Left
-          </Text>
+          <Image
+            source={1}
+            style={
+              {
+                "height": 133.4,
+                "resizeMode": "contain",
+                "width": 45,
+              }
+            }
+          />
         </View>
         <View
           accessible={true}
@@ -212,13 +228,21 @@ exports[`Game should render without crashing 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             {
+              "marginLeft": 5,
               "opacity": 1,
             }
           }
         >
-          <Text>
-            Down
-          </Text>
+          <Image
+            source={1}
+            style={
+              {
+                "height": 133.4,
+                "resizeMode": "contain",
+                "width": 45,
+              }
+            }
+          />
         </View>
         <View
           accessible={true}
@@ -233,13 +257,21 @@ exports[`Game should render without crashing 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             {
+              "marginLeft": 5,
               "opacity": 1,
             }
           }
         >
-          <Text>
-            Right
-          </Text>
+          <Image
+            source={1}
+            style={
+              {
+                "height": 133.4,
+                "resizeMode": "contain",
+                "width": 45,
+              }
+            }
+          />
         </View>
       </View>
     </View>
