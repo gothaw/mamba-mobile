@@ -2,8 +2,11 @@ import { FunctionComponent, useContext } from "react";
 import { Button, Text, TouchableOpacity, View } from "react-native";
 
 import { Context } from "../client/ContextProvider";
+import { Images } from "../config";
 import { useControls } from "../hooks/useControls";
 import { EngineInterface } from "../types/engineInterface";
+
+import ControlsButton from "./ControlsButton";
 
 // todo Styling and component WIP
 
@@ -23,31 +26,38 @@ const Controls: FunctionComponent<Props> = ({ engine }) => {
   } = useControls(engine);
 
   return (
-    <View style={{...context.theme.gameControls}}>
-      <View style={{ marginLeft: 50, width: 50 }}>
-        <TouchableOpacity onPressIn={handleUp} onPressOut={handleRelease}>
-          <Text>Up</Text>
-        </TouchableOpacity>
+    <View style={context.theme.gameControls}>
+      <View style={context.theme.gameControlsTopRow}>
+        <ControlsButton
+          handlePressIn={handleUp}
+          handlePressOut={handleRelease}
+          imgStyle={context.theme.gameControlsButtonImg}
+          src={Images.ArrowUp}
+          style={context.theme.gameControlsButton}
+        />
       </View>
-      <View style={{ flexDirection: "row" }}>
-        <TouchableOpacity
-          onPressIn={handleLeft}
-          onPressOut={handleRelease}
-        >
-          <Text>Left</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPressIn={handleDown}
-          onPressOut={handleRelease}
-        >
-          <Text>Down</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPressIn={handleRight}
-          onPressOut={handleRelease}
-        >
-          <Text>Right</Text>
-        </TouchableOpacity>
+      <View style={context.theme.gameControlsBottomRow}>
+        <ControlsButton
+          handlePressIn={handleLeft}
+          handlePressOut={handleRelease}
+          imgStyle={context.theme.gameControlsButtonImg}
+          src={Images.ArrowLeft}
+          style={context.theme.gameControlsButton}
+        />
+        <ControlsButton
+          handlePressIn={handleDown}
+          handlePressOut={handleRelease}
+          imgStyle={context.theme.gameControlsButtonImg}
+          src={Images.ArrowDown}
+          style={context.theme.gameControlsButton}
+        />
+        <ControlsButton
+          handlePressIn={handleRight}
+          handlePressOut={handleRelease}
+          imgStyle={context.theme.gameControlsButtonImg}
+          src={Images.ArrowRight}
+          style={context.theme.gameControlsButton}
+        />
       </View>
     </View>
   );

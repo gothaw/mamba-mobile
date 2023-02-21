@@ -18,6 +18,11 @@ const Game: FunctionComponent<Props> = () => {
   const context = useContext(Context);
   const [ engine, setEngine ] = useState(null);
 
+  useEffect(() => {
+    console.log(process.env);
+  }, []);
+
+
   return (
     <BackgroundGradient>
       <View testID={TestIds.Game} style={{...context.theme.viewWrapper}}>
@@ -37,7 +42,7 @@ const Game: FunctionComponent<Props> = () => {
                 speedY: 0
               },
               spider: {
-                position: [636.58, 396.43],
+                position: [400, 200],
                 renderer: <Spider />,
                 speedX: 0,
                 speedY: 0
