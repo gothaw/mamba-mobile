@@ -14,7 +14,7 @@ interface Props {
   engine: EngineInterface,
 }
 
-const Controls: FunctionComponent<Props> = ({ engine }) => {
+const ArrowControls: FunctionComponent<Props> = ({ engine }) => {
   const context = useContext(Context);
 
   const {
@@ -63,4 +63,4 @@ const Controls: FunctionComponent<Props> = ({ engine }) => {
   );
 };
 
-export default Controls;
+export default ArrowControls;

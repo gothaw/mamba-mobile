@@ -3,7 +3,7 @@ import { ImageBackground, View } from "react-native";
 import { GameEngine } from "react-native-game-engine";
 
 import { Context } from "../client/ContextProvider";
-import Controls from "../components/Controls";
+import ArrowControls from "../components/ArrowControls";
 import Snake from "../components/Snake";
 import Spider from "../components/Spider";
 import { Game as GameConfig, Images } from "../config";
@@ -17,11 +17,6 @@ interface Props {
 const Game: FunctionComponent<Props> = () => {
   const context = useContext(Context);
   const [ engine, setEngine ] = useState(null);
-
-  useEffect(() => {
-    console.log(process.env);
-  }, []);
-
 
   return (
     <BackgroundGradient>
@@ -51,7 +46,7 @@ const Game: FunctionComponent<Props> = () => {
             systems={[ GameLoop ]}
           />
         </View>
-        <Controls engine={engine} />
+        <ArrowControls engine={engine} />
       </View>
     </BackgroundGradient>
   );
