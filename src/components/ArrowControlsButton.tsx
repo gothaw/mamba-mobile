@@ -9,7 +9,7 @@ interface Props {
   style?: object,
 }
 
-const ControlsButton: FunctionComponent<Props> = (props) => {
+const ArrowControlsButton: FunctionComponent<Props> = (props) => {
   const {
     handlePressIn,
     handlePressOut,
@@ -30,4 +30,4 @@ const ControlsButton: FunctionComponent<Props> = (props) => {
   );
 };
 
-export default ControlsButton;
+export default ArrowControlsButton;

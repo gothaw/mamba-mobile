@@ -4,6 +4,7 @@ import { GameEngine } from "react-native-game-engine";
 
 import { Context } from "../client/ContextProvider";
 import ArrowControls from "../components/ArrowControls";
+import AxisPadControls from "../components/AxisPadControls";
 import Snake from "../components/Snake";
 import Spider from "../components/Spider";
 import { Game as GameConfig, Images } from "../config";
@@ -17,6 +18,14 @@ interface Props {
 const Game: FunctionComponent<Props> = () => {
   const context = useContext(Context);
   const [ engine, setEngine ] = useState(null);
+
+  const renderControls = () => {
+    const shouldUseAxisPad = !process.env.AXIS_PAD;
+
+    return (
+      shouldUseAxisPad ? (<AxisPadControls engine={engine}/>) : (<ArrowControls engine={engine} />)
+    );
+  };
 
   return (
     <BackgroundGradient>
@@ -46,7 +55,7 @@ const Game: FunctionComponent<Props> = () => {
             systems={[ GameLoop ]}
           />
         </View>
-        <ArrowControls engine={engine} />
+        {renderControls()}
       </View>
     </BackgroundGradient>
   );

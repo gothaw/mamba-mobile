@@ -6,7 +6,7 @@ import { Images } from "../config";
 import { useControls } from "../hooks/useControls";
 import { EngineInterface } from "../types/engineInterface";
 
-import ControlsButton from "./ControlsButton";
+import ArrowControlsButton from "./ArrowControlsButton";
 
 // todo Styling and component WIP
 
@@ -28,7 +28,7 @@ const ArrowControls: FunctionComponent<Props> = ({ engine }) => {
   return (
     <View style={context.theme.gameControls}>
       <View style={context.theme.gameControlsTopRow}>
-        <ControlsButton
+        <ArrowControlsButton
           handlePressIn={handleUp}
           handlePressOut={handleRelease}
           imgStyle={context.theme.gameControlsButtonImg}
@@ -37,21 +37,21 @@ const ArrowControls: FunctionComponent<Props> = ({ engine }) => {
         />
       </View>
       <View style={context.theme.gameControlsBottomRow}>
-        <ControlsButton
+        <ArrowControlsButton
           handlePressIn={handleLeft}
           handlePressOut={handleRelease}
           imgStyle={context.theme.gameControlsButtonImg}
           src={Images.ArrowLeft}
           style={context.theme.gameControlsButton}
         />
-        <ControlsButton
+        <ArrowControlsButton
           handlePressIn={handleDown}
           handlePressOut={handleRelease}
           imgStyle={context.theme.gameControlsButtonImg}
           src={Images.ArrowDown}
           style={context.theme.gameControlsButton}
         />
-        <ControlsButton
+        <ArrowControlsButton
           handlePressIn={handleRight}
           handlePressOut={handleRelease}
           imgStyle={context.theme.gameControlsButtonImg}
