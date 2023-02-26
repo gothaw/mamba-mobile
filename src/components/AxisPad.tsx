@@ -27,6 +27,7 @@ interface State {
   dx: number,
   dy: number,
   width: number,
+  height: number,
   handler: number,
   step: number
 }
@@ -47,25 +48,26 @@ class AxisPad extends React.Component<Props, State> {
     this.anim_py = new Animated.Value(0);
 
     this.state = {
-      identifier: 0,
       cx: 0,
       cy: 0,
-      sx: 0,
-      sy: 0,
-      px: 0,
-      py: 0,
       dx: 0,
       dy: 0,
-      width: props.size ? props.size : 300,
       handler: props.handlerSize ? props.handlerSize : 100,
-      step: props.step ? props.step : 0
+      height: props.size ? props.size : 300,
+      identifier: 0,
+      px: 0,
+      py: 0,
+      step: props.step ? props.step : 0,
+      sx: 0,
+      sy: 0,
+      width: props.size ? props.size : 300
     };
 
     this.onTouchStart = this.onTouchStart.bind(this);
     this.onTouchEnd = this.onTouchEnd.bind(this);
     this.onTouchCancel = this.onTouchCancel.bind(this);
     this.onTouchMove = this.onTouchMove.bind(this);
-    this.limitter = this.limitter.bind(this);
+    this.limiter = this.limiter.bind(this);
     this.sendValue = this.sendValue.bind(this);
     this.centerPosition = this.centerPosition.bind(this);
     this.animate = this.animate.bind(this);
@@ -77,18 +79,18 @@ class AxisPad extends React.Component<Props, State> {
     Animated.timing(
       this.anim_cx,
       {
-        toValue: this.state.cx,
         duration: 300,
         easing: Easing.elastic(1),
+        toValue: this.state.cx,
         useNativeDriver: true
       }
     ).start();
     Animated.timing(
       this.anim_cy,
       {
-        toValue: this.state.cy,
         duration: 300,
         easing: Easing.elastic(1),
+        toValue: this.state.cy,
         useNativeDriver: true
       }
     ).start();
@@ -98,29 +100,36 @@ class AxisPad extends React.Component<Props, State> {
     Animated.timing(
       this.anim_px,
       {
-        toValue: this.state.px,
         duration: 50,
         easing: Easing.out(Easing.exp),
+        toValue: this.state.px,
         useNativeDriver: true
       }
     ).start();
     Animated.timing(
       this.anim_py,
       {
-        toValue: this.state.py,
         duration: 50,
         easing: Easing.out(Easing.exp),
+        toValue: this.state.py,
         useNativeDriver: true
       }
     ).start();
   }
 
-  limitter(input) {
+  limiter(inputMain, inputSec) {
     const { width, step } = this.state;
-    const minimised = input / width * 2;
+    const minimisedMain = inputMain / width * 2;
+    const minimisedSec = inputSec / width * 2;
+    const tangent = Math.pow(minimisedMain * minimisedMain + minimisedSec * minimisedSec, 0.5);
+
     const stepped = (x) => step ? Math.floor(x / step) * step : x;
-    const limited = (x) => Math.min(1, Math.max(-1, x));
-    return stepped(limited(minimised)) * width / 2;
+    const limited = (x, tangent) => {
+      const limit = Math.abs(x) / tangent;
+
+      return Math.min(limit, Math.max(-limit, -1, x));
+    };
+    return stepped(limited(minimisedMain, tangent)) * width / 2;
   }
 
   sendValue(x, y) {
@@ -140,15 +149,14 @@ class AxisPad extends React.Component<Props, State> {
   }
 
   setPosition(pageX, pageY, after) {
-    const { dx, dy } = this.state;
     (this.wrapperElement as View).measure((fx, fy, width, height, px, py) => {
       const cx = px + width / 2;
       const cy = py + height / 2;
       this.setState({
-        sx: cx,
-        sy: cy,
         px: this.props.lockX ? 0 : pageX - cx,
-        py: this.props.lockY ? 0 : pageY - cy
+        py: this.props.lockY ? 0 : pageY - cy,
+        sx: cx,
+        sy: cy
       }, after);
     });
   }
@@ -190,13 +198,15 @@ class AxisPad extends React.Component<Props, State> {
     if (touchItem) {
       const { pageX, pageY } = touchItem;
 
-      let px = this.props.lockX ? 0 : pageX - this.state.sx + this.state.dx;
-      let py = this.props.lockY ? 0 : pageY - this.state.sy + this.state.dy;
+      const pxStatic = this.props.lockX ? 0 : pageX - this.state.sx + this.state.dx;
+      const pyStatic = this.props.lockY ? 0 : pageY - this.state.sy + this.state.dy;
 
-      px = this.props.lockX ? 0 : this.limitter(px);
-      py = this.props.lockY ? 0 : this.limitter(py);
-      this.sendValue(px, py);
-      this.setState({ px, py }, this.animate);
+      const px = this.props.lockX ? 0 : this.limiter(pxStatic, pyStatic);
+      const py = this.props.lockY ? 0 : this.limiter(pyStatic, pxStatic);
+      if (px && py) {
+        this.sendValue(px, py);
+        this.setState({ px, py }, this.animate);
+      }
     }
   }
 
@@ -218,10 +228,10 @@ class AxisPad extends React.Component<Props, State> {
     this.setState({
       cx: 0,
       cy: 0,
-      px,
-      py,
       dx,
-      dy
+      dy,
+      px,
+      py
     }, () => {
       this.centerAnimate();
       this.animate();
@@ -242,25 +252,25 @@ class AxisPad extends React.Component<Props, State> {
                      onTouchCancel={this.onTouchCancel}
                      onTouchMove={this.onTouchMove}
                      style={[AxisPadStyle.wrapper, this.props.wrapperStyle ? this.props.wrapperStyle : {}, {
-                       width: this.state.width,
-                       height: this.state.width,
+                       height: this.state.height,
                        transform: [{
                          translateX: this.anim_cx
                        }, {
                          translateY: this.anim_cy
-                       }]
+                       }],
+                       width: this.state.width
                      }]}
                      ref={view => { this.wrapperElement = view; }}>
         <Animated.View
           ref={view => { this.handlerElement = view; }}
           style={[AxisPadStyle.handler, this.props.handlerStyle ? this.props.handlerStyle : {}, {
-            width: this.state.handler,
             height: this.state.handler,
             transform: [{
               translateX: this.state.px // this was anim_px
             }, {
               translateY: this.state.py // this was anim_py
-            }]
+            }],
+            width: this.state.handler
           }]}>
           {this.props.children}
         </Animated.View>
@@ -270,21 +280,21 @@ class AxisPad extends React.Component<Props, State> {
 }
 
 const AxisPadStyle =  {
-  wrapper: {
-    width: 300,
-    height: 300,
-    borderRadius: 300,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#00000033"
-  },
   handler: {
-    width: "60%",
+    alignItems: "center",
+    backgroundColor: "#00000066",
+    borderRadius: 300,
     height: "60%",
     justifyContent: "center",
+    width: "60%"
+  },
+  wrapper: {
     alignItems: "center",
+    backgroundColor: "#00000033",
     borderRadius: 300,
-    backgroundColor: "#00000066"
+    height: 300,
+    justifyContent: "center",
+    width: 300
   }
 };
 

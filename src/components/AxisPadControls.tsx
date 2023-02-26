@@ -19,6 +19,7 @@ const AxisPadControls : FunctionComponent<Props> = ({ engine }) => {
         console.log(x, y);
       }}
       autoCenter={false}
+      step={0.01}
       resetOnRelease={true}
     />
   );
