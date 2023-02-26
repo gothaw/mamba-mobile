@@ -133,147 +133,53 @@ exports[`Game should render without crashing 1`] = `
       </View>
     </View>
     <View
+      collapsable={false}
+      forwardedRef={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
       style={
         {
-          "bottom": "3%",
-          "position": "absolute",
-          "right": 0,
+          "alignItems": "center",
+          "backgroundColor": "#00000033",
+          "borderRadius": 300,
+          "height": 300,
+          "justifyContent": "center",
+          "transform": [
+            {
+              "translateX": 0,
+            },
+            {
+              "translateY": 0,
+            },
+          ],
+          "width": 300,
         }
       }
     >
       <View
+        collapsable={false}
+        forwardedRef={[Function]}
         style={
           {
             "alignItems": "center",
-            "marginBottom": 15,
+            "backgroundColor": "#00000066",
+            "borderRadius": 300,
+            "height": 100,
+            "justifyContent": "center",
+            "transform": [
+              {
+                "translateX": 0,
+              },
+              {
+                "translateY": 0,
+              },
+            ],
+            "width": 100,
           }
         }
-      >
-        <View
-          accessible={true}
-          collapsable={false}
-          focusable={false}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            {
-              "marginLeft": 5,
-              "opacity": 1,
-            }
-          }
-        >
-          <Image
-            source={1}
-            style={
-              {
-                "height": 133.4,
-                "resizeMode": "contain",
-                "width": 45,
-              }
-            }
-          />
-        </View>
-      </View>
-      <View
-        style={
-          {
-            "flexDirection": "row",
-          }
-        }
-      >
-        <View
-          accessible={true}
-          collapsable={false}
-          focusable={false}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            {
-              "marginLeft": 5,
-              "opacity": 1,
-            }
-          }
-        >
-          <Image
-            source={1}
-            style={
-              {
-                "height": 133.4,
-                "resizeMode": "contain",
-                "width": 45,
-              }
-            }
-          />
-        </View>
-        <View
-          accessible={true}
-          collapsable={false}
-          focusable={false}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            {
-              "marginLeft": 5,
-              "opacity": 1,
-            }
-          }
-        >
-          <Image
-            source={1}
-            style={
-              {
-                "height": 133.4,
-                "resizeMode": "contain",
-                "width": 45,
-              }
-            }
-          />
-        </View>
-        <View
-          accessible={true}
-          collapsable={false}
-          focusable={false}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            {
-              "marginLeft": 5,
-              "opacity": 1,
-            }
-          }
-        >
-          <Image
-            source={1}
-            style={
-              {
-                "height": 133.4,
-                "resizeMode": "contain",
-                "width": 45,
-              }
-            }
-          />
-        </View>
-      </View>
+      />
     </View>
   </View>
 </ViewManagerAdapter_ExpoLinearGradient>
