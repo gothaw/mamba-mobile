@@ -118,16 +118,17 @@ class AxisPad extends React.Component<Props, State> {
   }
 
   limiter(inputMain, inputSec) {
-    const { width, step } = this.state;
+    const { handler, width, step } = this.state;
     const minimisedMain = inputMain / width * 2;
     const minimisedSec = inputSec / width * 2;
     const tangent = Math.pow(minimisedMain * minimisedMain + minimisedSec * minimisedSec, 0.5);
+    const maxRadiusUnified = 1 - handler / width;
 
     const stepped = (x) => step ? Math.floor(x / step) * step : x;
     const limited = (x, tangent) => {
-      const limit = Math.abs(x) / tangent;
+      const limit = maxRadiusUnified * Math.abs(x) / tangent;
 
-      return Math.min(limit, Math.max(-limit, -1, x));
+      return Math.min(limit, Math.max(-limit, x));
     };
     return stepped(limited(minimisedMain, tangent)) * width / 2;
   }
