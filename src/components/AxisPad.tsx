@@ -4,8 +4,6 @@ import Value = Animated.Value;
 
 interface Props {
   autoCenter?: boolean,
-  lockX?: boolean,
-  lockY?: boolean,
   size?: number,
   handlerSize?: number,
   step?: number,
@@ -72,7 +70,6 @@ class AxisPad extends React.Component<Props, State> {
     this.centerPosition = this.centerPosition.bind(this);
     this.animate = this.animate.bind(this);
     this.centerAnimate = this.centerAnimate.bind(this);
-    this.setPosition = this.setPosition.bind(this);
   }
 
   centerAnimate() {
@@ -149,19 +146,6 @@ class AxisPad extends React.Component<Props, State> {
     });
   }
 
-  setPosition(pageX, pageY, after) {
-    (this.wrapperElement as View).measure((fx, fy, width, height, px, py) => {
-      const cx = px + width / 2;
-      const cy = py + height / 2;
-      this.setState({
-        px: this.props.lockX ? 0 : pageX - cx,
-        py: this.props.lockY ? 0 : pageY - cy,
-        sx: cx,
-        sy: cy
-      }, after);
-    });
-  }
-
   getTouchPoint(touches, identifier) {
     let touchItem = null;
 
@@ -199,11 +183,11 @@ class AxisPad extends React.Component<Props, State> {
     if (touchItem) {
       const { pageX, pageY } = touchItem;
 
-      const pxStatic = this.props.lockX ? 0 : pageX - this.state.sx + this.state.dx;
-      const pyStatic = this.props.lockY ? 0 : pageY - this.state.sy + this.state.dy;
+      const pxStatic = pageX - this.state.sx + this.state.dx;
+      const pyStatic = pageY - this.state.sy + this.state.dy;
 
-      const px = this.props.lockX ? 0 : this.limiter(pxStatic, pyStatic);
-      const py = this.props.lockY ? 0 : this.limiter(pyStatic, pxStatic);
+      const px = this.limiter(pxStatic, pyStatic);
+      const py = this.limiter(pyStatic, pxStatic);
       if (px && py) {
         this.sendValue(px, py);
         this.setState({ px, py }, this.animate);
@@ -213,18 +197,12 @@ class AxisPad extends React.Component<Props, State> {
 
   onTouchEnd() {
     let { px, py } = this.state;
-    let dx, dy;
     if (this.props.resetOnRelease) {
       px = 0;
       py = 0;
     }
-    if (this.props.autoCenter) {
-      dx = px;
-      dy = py;
-    } else {
-      dx = 0;
-      dy = 0;
-    }
+    const dx = px;
+    const dy = py;
     this.sendValue(px, py);
     this.setState({
       cx: 0,
@@ -232,7 +210,9 @@ class AxisPad extends React.Component<Props, State> {
       dx,
       dy,
       px,
-      py
+      py,
+      sx: 0,
+      sy: 0
     }, () => {
       this.centerAnimate();
       this.animate();
@@ -267,9 +247,9 @@ class AxisPad extends React.Component<Props, State> {
           style={[AxisPadStyle.handler, this.props.handlerStyle ? this.props.handlerStyle : {}, {
             height: this.state.handler,
             transform: [{
-              translateX: this.state.px // this was anim_px
+              translateX: this.state.px
             }, {
-              translateY: this.state.py // this was anim_py
+              translateY: this.state.py
             }],
             width: this.state.handler
           }]}>
