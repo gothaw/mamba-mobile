@@ -66,7 +66,7 @@ class AxisPad extends React.Component<Props, State> {
   animatedX: Value;
   animatedY: Value;
   wrapperElement: Animated.LegacyRef<View> | View;
-  private handlerElement: Animated.LegacyRef<View> | View;
+  handlerElement: Animated.LegacyRef<View> | View;
 
   constructor(props: Props) {
     super(props);
@@ -95,14 +95,14 @@ class AxisPad extends React.Component<Props, State> {
     this.onTouchEnd = this.onTouchEnd.bind(this);
     this.onTouchCancel = this.onTouchCancel.bind(this);
     this.onTouchMove = this.onTouchMove.bind(this);
-    this.limiter = this.limiter.bind(this);
+    this.limitCoordinates = this.limitCoordinates.bind(this);
     this.sendValue = this.sendValue.bind(this);
-    this.centerPosition = this.centerPosition.bind(this);
+    this.centerPad = this.centerPad.bind(this);
     this.animate = this.animate.bind(this);
-    this.centerAnimate = this.centerAnimate.bind(this);
+    this.animatePad = this.animatePad.bind(this);
   }
 
-  centerAnimate() {
+  animatePad() {
     Animated.timing(
       this.animatedPadX,
       {
@@ -144,35 +144,48 @@ class AxisPad extends React.Component<Props, State> {
     ).start();
   }
 
-  limiter(inputMain, inputSec) {
+  limitCoordinates(x, y) {
     const { handler, width, step } = this.state;
-    const minimisedMain = inputMain / width * 2;
-    const minimisedSec = inputSec / width * 2;
-    const tangent = Math.pow(minimisedMain * minimisedMain + minimisedSec * minimisedSec, 0.5);
-    const maxRadiusUnified = 1 - handler / width;
+    const relativeX = x / width * 2;
+    const relativeY = y / width * 2;
+    const tangent = Math.pow(relativeX * relativeX + relativeY * relativeY, 0.5);
+    const relativeMaxRadius = 1 - handler / width;
 
-    const stepped = (x) => step ? Math.floor(x / step) * step : x;
-    const limited = (x, tangent) => {
-      const limit = maxRadiusUnified * Math.abs(x) / tangent;
+    const stepped = (relativeCoordinate) => step
+      ? Math.floor(relativeCoordinate / step) * step
+      : relativeCoordinate;
 
-      return Math.min(limit, Math.max(-limit, x));
+    const limited = (relativeCoordinate, tangent) => {
+      const limit = relativeMaxRadius * Math.abs(relativeCoordinate) / tangent;
+
+      return Math.min(limit, Math.max(-limit, relativeCoordinate));
     };
-    return stepped(limited(minimisedMain, tangent)) * width / 2;
+
+    return {
+      x: stepped(limited(relativeX, tangent)) * width / 2,
+      y: stepped(limited(relativeY, tangent)) * width / 2
+    };
   }
 
   sendValue(x, y) {
     const { width } = this.state;
-    this.props.onValue && this.props.onValue({ x: x / width * 2, y: y / width * 2 });
+    this.props.onValue && this.props.onValue(
+      {
+        x: x / width * 2,
+        y: y / width * 2
+      }
+    );
   }
 
-  centerPosition(pageX, pageY) {
+  centerPad(pageX, pageY) {
     (this.handlerElement as View).measure((fx, fy, width, height, x, y) => {
       const padX = pageX - x - width / 2;
       const padY = pageY - y - height / 2;
+
       this.setState({
         padX,
         padY
-      }, this.centerAnimate);
+      }, this.animatePad);
     });
   }
 
@@ -196,7 +209,7 @@ class AxisPad extends React.Component<Props, State> {
       const { pageX, pageY } = touchItem;
 
       if (this.props.autoCenterPad) {
-        this.centerPosition(pageX, pageY);
+        this.centerPad(pageX, pageY);
       }
 
       this.sendValue(this.state.x, this.state.y);
@@ -213,11 +226,11 @@ class AxisPad extends React.Component<Props, State> {
     if (touchItem) {
       const { pageX, pageY } = touchItem;
 
-      const handlerXStatic = pageX - this.state.touchX + this.state.onReleaseX;
-      const handlerYStatic = pageY - this.state.touchY + this.state.onReleaseY;
+      const newX = pageX - this.state.touchX + this.state.onReleaseX;
+      const newY = pageY - this.state.touchY + this.state.onReleaseY;
 
-      const x = this.limiter(handlerXStatic, handlerYStatic);
-      const y = this.limiter(handlerYStatic, handlerXStatic);
+      const { x, y } = this.limitCoordinates(newX, newY);
+
       if (x && y) {
         this.sendValue(x, y);
         this.setState({ x, y }, this.animate);
@@ -244,7 +257,7 @@ class AxisPad extends React.Component<Props, State> {
       x,
       y
     }, () => {
-      this.centerAnimate();
+      this.animatePad();
       this.animate();
     });
   }
@@ -253,7 +266,7 @@ class AxisPad extends React.Component<Props, State> {
     this.setState({
       padX: 0,
       padY: 0
-    }, this.centerAnimate);
+    }, this.animatePad);
   }
 
   render() {
