@@ -18,6 +18,7 @@ const AxisPadControls : FunctionComponent<Props> = ({ engine }) => {
         // values are between -1 and 1
         console.log(x, y);
       }}
+      isOrthogonalPad={true}
       step={0.01}
     />
   );

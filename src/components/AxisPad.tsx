@@ -6,6 +6,7 @@ import Value = Animated.Value;
  * Axis pad props
  *
  * autoCenterPad    auto centres pad on touch event start
+ * isOrthogonalPad  if true it changes the pad to work only in 2 directions and handler having only 5 positions (up, down, left, right, idle)
  * size             pad size
  * handlerSize      size of the handler
  * step             defines a step in which handler can change its position on the pad
@@ -17,6 +18,7 @@ import Value = Animated.Value;
  */
 interface Props {
   autoCenterPad?: boolean,
+  isOrthogonalPad?: boolean,
   size?: number,
   handlerSize?: number,
   step?: number,
@@ -96,6 +98,7 @@ class AxisPad extends React.Component<Props, State> {
     this.onTouchCancel = this.onTouchCancel.bind(this);
     this.onTouchMove = this.onTouchMove.bind(this);
     this.limitCoordinates = this.limitCoordinates.bind(this);
+    this.limitCoordinatesForOrthogonalPad = this.limitCoordinatesForOrthogonalPad.bind(this);
     this.sendValue = this.sendValue.bind(this);
     this.centerPad = this.centerPad.bind(this);
     this.animate = this.animate.bind(this);
@@ -144,26 +147,57 @@ class AxisPad extends React.Component<Props, State> {
     ).start();
   }
 
-  limitCoordinates(x, y) {
+  limitCoordinatesForOrthogonalPad(handlerX, handlerY) {
+    const { handler, width } = this.state;
+    const relativeX = handlerX / width * 2;
+    const relativeY = handlerY / width * 2;
+    const radius = Math.pow(relativeX * relativeX + relativeY * relativeY, 0.5);
+    const relativeMaxRadius = 1 - handler / width;
+
+    if (radius <= relativeMaxRadius * 0.60) { // 60% of max radius, move to constants
+      return {
+        x: 0,
+        y: 0
+      };
+    }
+
+    const signX = Math.sign(relativeX);
+    const signY = Math.sign(relativeY);
+    const angle = Math.atan(Math.abs(relativeY/relativeX)) * 180 / Math.PI;
+
+    if (angle <= 45) {
+      return {
+        x: signX * relativeMaxRadius * width / 2,
+        y: 0
+      };
+    } else {
+      return {
+        x: 0,
+        y: signY * relativeMaxRadius * width / 2
+      };
+    }
+  }
+
+  limitCoordinates(handlerX, handlerY) {
     const { handler, width, step } = this.state;
-    const relativeX = x / width * 2;
-    const relativeY = y / width * 2;
-    const tangent = Math.pow(relativeX * relativeX + relativeY * relativeY, 0.5);
+    const relativeX = handlerX / width * 2;
+    const relativeY = handlerY / width * 2;
+    const relativeRadius = Math.pow(relativeX * relativeX + relativeY * relativeY, 0.5);
     const relativeMaxRadius = 1 - handler / width;
 
     const stepped = (relativeCoordinate) => step
       ? Math.floor(relativeCoordinate / step) * step
       : relativeCoordinate;
 
-    const limited = (relativeCoordinate, tangent) => {
-      const limit = relativeMaxRadius * Math.abs(relativeCoordinate) / tangent;
+    const limited = (relativeCoordinate, relativeRadius) => {
+      const limit = relativeMaxRadius * Math.abs(relativeCoordinate) / relativeRadius;
 
       return Math.min(limit, Math.max(-limit, relativeCoordinate));
     };
 
     return {
-      x: stepped(limited(relativeX, tangent)) * width / 2,
-      y: stepped(limited(relativeY, tangent)) * width / 2
+      x: stepped(limited(relativeX, relativeRadius)) * width / 2,
+      y: stepped(limited(relativeY, relativeRadius)) * width / 2
     };
   }
 
@@ -229,9 +263,16 @@ class AxisPad extends React.Component<Props, State> {
       const newX = pageX - this.state.touchX + this.state.onReleaseX;
       const newY = pageY - this.state.touchY + this.state.onReleaseY;
 
-      const { x, y } = this.limitCoordinates(newX, newY);
+      let limitedCoordinates;
 
-      if (x && y) {
+      if (this.props.isOrthogonalPad) {
+        limitedCoordinates = this.limitCoordinatesForOrthogonalPad(newX, newY);
+      } else {
+        limitedCoordinates = this.limitCoordinates(newX, newY);
+      }
+      const { x, y } = limitedCoordinates;
+
+      if (typeof x === "number" && typeof y === "number") {
         this.sendValue(x, y);
         this.setState({ x, y }, this.animate);
       }
