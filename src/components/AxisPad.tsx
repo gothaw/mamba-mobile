@@ -1,6 +1,5 @@
-import React, { ReactNode } from "react";
-import { Animated, Easing, View } from "react-native";
-import Value = Animated.Value;
+import React, { FunctionComponent, ReactNode, useEffect, useRef, useState } from "react";
+import { Animated, Easing } from "react-native";
 
 /**
  * Axis pad props
@@ -29,130 +28,91 @@ interface Props {
   children?: ReactNode
 }
 
-/**
- * Axis pad state interface
- *
- * identifier         event identifier
- * padX               x coordinate of the centre of the pad. If 0 then pad is in initial position on x-axis. This is used when autoCenterPad is true.
- * padY               y coordinate of the centre of the pad. If 0 then pad is in initial position on y-axis. This is used when autoCenterPad is true.
- * touchX             x coordinate of the touch event. This is relative to the screen.
- * touchY             y coordinate of the touch event. This is relative to the screen.
- * x                  coordinate (x) of the centre of the handler. If 0 then pad is in the centre of the pad on x-axis.
- * y                  coordinate (y) of the centre of the handler. If 0 then pad is in the centre of the pad on y-axis.
- * onReleaseX         x coordinate of the centre of the handler when touch event finished. If 0, then handler returns to initial position on x-axis.
- * onReleaseY         y coordinate of the centre of the handler when touch event finished. If 0, then handler returns to initial position on y-axis.
- * width              pad width
- * height             pad height
- * handler            diameter of the handler
- * step               defines a step in which handler can change its position on the pad
- */
-interface State {
-  identifier: number,
-  padX: number,
-  padY: number,
-  touchX: number,
-  touchY: number,
-  x: number,
-  y: number,
-  onReleaseX: number,
-  onReleaseY: number,
-  width: number,
-  height: number,
-  handler: number,
-  step: number
-}
+const ANIMATION_DURATION_PAD = 300;
+const ANIMATION_DURATION = 50;
 
-class AxisPad extends React.Component<Props, State> {
-  animatedPadX: Value;
-  animatedPadY: Value;
-  animatedX: Value;
-  animatedY: Value;
-  wrapperElement: Animated.LegacyRef<View> | View;
-  handlerElement: Animated.LegacyRef<View> | View;
+const AxisPad: FunctionComponent<Props> = (props) => {
+  const animatedPadX = useRef(new Animated.Value(0));
+  const animatedPadY = useRef(new Animated.Value(0));
+  const animatedX = useRef(new Animated.Value(0));
+  const animatedY = useRef(new Animated.Value(0));
+  const wrapperElement = useRef(null);
+  const handlerElement = useRef(null);
+  const [ identifier, setIdentifier ] = useState(0);
+  const [ x, setX ] = useState(0);
+  const [ y, setY ] = useState(0);
+  const [ padX, setPadX ] = useState(0);
+  const [ padY, setPadY ] = useState(0);
+  const [ onReleaseX, setOnReleaseX ] = useState(0);
+  const [ onReleaseY, setOnReleaseY ] = useState(0);
+  const [ touchX, setTouchX ] = useState(0);
+  const [ touchY, setTouchY ] = useState(0);
 
-  constructor(props: Props) {
-    super(props);
-    this.animatedPadX = new Animated.Value(0);
-    this.animatedPadY = new Animated.Value(0);
-    this.animatedX = new Animated.Value(0);
-    this.animatedY = new Animated.Value(0);
+  const {
+    autoCenterPad,
+    freezeOnRelease,
+    handlerSize,
+    isOrthogonalPad,
+    onValue,
+    size,
+    step
+  } = props;
 
-    this.state = {
-      handler: props.handlerSize ? props.handlerSize : 100,
-      height: props.size ? props.size : 300,
-      identifier: 0,
-      onReleaseX: 0,
-      onReleaseY: 0,
-      padX: 0,
-      padY: 0,
-      step: props.step ? props.step : 0,
-      touchX: 0,
-      touchY: 0,
-      width: props.size ? props.size : 300,
-      x: 0,
-      y: 0
-    };
+  useEffect(() => {
+    animatePad(padX, padY);
+  }, [padX, padY]);
 
-    this.onTouchStart = this.onTouchStart.bind(this);
-    this.onTouchEnd = this.onTouchEnd.bind(this);
-    this.onTouchCancel = this.onTouchCancel.bind(this);
-    this.onTouchMove = this.onTouchMove.bind(this);
-    this.limitCoordinates = this.limitCoordinates.bind(this);
-    this.limitCoordinatesForOrthogonalPad = this.limitCoordinatesForOrthogonalPad.bind(this);
-    this.sendValue = this.sendValue.bind(this);
-    this.centerPad = this.centerPad.bind(this);
-    this.animate = this.animate.bind(this);
-    this.animatePad = this.animatePad.bind(this);
-  }
+  useEffect(() => {
+    animate(x, y);
+  }, [x, y]);
 
-  animatePad() {
+  const animatePad = (padX, padY) => {
     Animated.timing(
-      this.animatedPadX,
+      animatedPadX.current,
       {
-        duration: 300,
+        duration: ANIMATION_DURATION_PAD,
         easing: Easing.elastic(1),
-        toValue: this.state.padX,
+        toValue: padX,
         useNativeDriver: true
       }
     ).start();
     Animated.timing(
-      this.animatedPadY,
+      animatedPadY.current,
       {
-        duration: 300,
+        duration: ANIMATION_DURATION_PAD,
         easing: Easing.elastic(1),
-        toValue: this.state.padY,
+        toValue: padY,
         useNativeDriver: true
       }
     ).start();
-  }
+  };
 
-  animate() {
+  const animate = (x, y) => {
     Animated.timing(
-      this.animatedX,
+      animatedX.current,
       {
-        duration: 50,
+        duration: ANIMATION_DURATION,
         easing: Easing.out(Easing.exp),
-        toValue: this.state.x,
+        toValue: x,
         useNativeDriver: true
       }
     ).start();
     Animated.timing(
-      this.animatedY,
+      animatedY.current,
       {
-        duration: 50,
+        duration: ANIMATION_DURATION,
         easing: Easing.out(Easing.exp),
-        toValue: this.state.y,
+        toValue: y,
         useNativeDriver: true
       }
     ).start();
-  }
+  };
 
-  limitCoordinatesForOrthogonalPad(handlerX, handlerY) {
-    const { handler, width } = this.state;
-    const relativeX = handlerX / width * 2;
-    const relativeY = handlerY / width * 2;
+  const limitCoordinatesForOrthogonalPad = (handlerX, handlerY) => {
+    const relativeX = handlerX / size * 2;
+    const relativeY = handlerY / size * 2;
     const radius = Math.pow(relativeX * relativeX + relativeY * relativeY, 0.5);
-    const relativeMaxRadius = 1 - handler / width;
+    const relativeMaxRadius = 1 - handlerSize / size;
 
     if (radius <= relativeMaxRadius * 0.60) { // 60% of max radius, move to constants
       return {
@@ -160,30 +120,28 @@ class AxisPad extends React.Component<Props, State> {
         y: 0
       };
     }
-
     const signX = Math.sign(relativeX);
     const signY = Math.sign(relativeY);
     const angle = Math.atan(Math.abs(relativeY/relativeX)) * 180 / Math.PI;
 
     if (angle <= 45) {
       return {
-        x: signX * relativeMaxRadius * width / 2,
+        x: signX * relativeMaxRadius * size / 2,
         y: 0
       };
     } else {
       return {
         x: 0,
-        y: signY * relativeMaxRadius * width / 2
+        y: signY * relativeMaxRadius * size / 2
       };
     }
-  }
+  };
 
-  limitCoordinates(handlerX, handlerY) {
-    const { handler, width, step } = this.state;
-    const relativeX = handlerX / width * 2;
-    const relativeY = handlerY / width * 2;
+  const limitCoordinates = (handlerX, handlerY) => {
+    const relativeX = handlerX / size * 2;
+    const relativeY = handlerY / size * 2;
     const relativeRadius = Math.pow(relativeX * relativeX + relativeY * relativeY, 0.5);
-    const relativeMaxRadius = 1 - handler / width;
+    const relativeMaxRadius = 1 - handlerSize / size;
 
     const stepped = (relativeCoordinate) => step
       ? Math.floor(relativeCoordinate / step) * step
@@ -196,34 +154,31 @@ class AxisPad extends React.Component<Props, State> {
     };
 
     return {
-      x: stepped(limited(relativeX, relativeRadius)) * width / 2,
-      y: stepped(limited(relativeY, relativeRadius)) * width / 2
+      x: stepped(limited(relativeX, relativeRadius)) * size / 2,
+      y: stepped(limited(relativeY, relativeRadius)) * size / 2
     };
-  }
+  };
 
-  sendValue(x, y) {
-    const { width } = this.state;
-    this.props.onValue && this.props.onValue(
+  const sendValue = (x, y) => {
+    onValue(
       {
-        x: x / width * 2,
-        y: y / width * 2
+        x: x / size * 2,
+        y: y / size * 2
       }
     );
-  }
+  };
 
-  centerPad(pageX, pageY) {
-    (this.handlerElement as View).measure((fx, fy, width, height, x, y) => {
+  const centerPad = (pageX, pageY) => {
+    handlerElement.current.measure((fx, fy, width, height, x, y) => {
       const padX = pageX - x - width / 2;
       const padY = pageY - y - height / 2;
 
-      this.setState({
-        padX,
-        padY
-      }, this.animatePad);
+      setPadX(padX);
+      setPadY(padY);
     });
-  }
+  };
 
-  getTouchPoint(touches, identifier) {
+  const getTouchPoint = (touches, identifier) => {
     let touchItem = null;
 
     touches.map((item) => {
@@ -233,116 +188,105 @@ class AxisPad extends React.Component<Props, State> {
     });
 
     return touchItem;
-  }
+  };
 
-  onTouchStart(evt) {
-    const identifier = evt.nativeEvent.identifier;
-    const touchItem = this.getTouchPoint(evt.nativeEvent.touches, identifier);
+  const onTouchStart = event => {
+    const identifier = event.nativeEvent.identifier;
+    const touchItem = getTouchPoint(event.nativeEvent.touches, identifier);
 
     if (typeof identifier === "number" && touchItem) {
       const { pageX, pageY } = touchItem;
 
-      if (this.props.autoCenterPad) {
-        this.centerPad(pageX, pageY);
+      if (autoCenterPad) {
+        centerPad(pageX, pageY);
       }
 
-      this.sendValue(this.state.x, this.state.y);
-      this.setState({
-        identifier,
-        touchX: pageX,
-        touchY: pageY
-      });
+      sendValue(x, y);
+      setIdentifier(identifier);
+      setTouchX(pageX);
+      setTouchY(pageY);
     }
-  }
+  };
 
-  onTouchMove(evt) {
-    const touchItem = this.getTouchPoint(evt.nativeEvent.touches, this.state.identifier);
+  const onTouchMove = event => {
+    const touchItem = getTouchPoint(event.nativeEvent.touches, identifier);
     if (touchItem) {
       const { pageX, pageY } = touchItem;
 
-      const newX = pageX - this.state.touchX + this.state.onReleaseX;
-      const newY = pageY - this.state.touchY + this.state.onReleaseY;
+      const newX = pageX - touchX + onReleaseX;
+      const newY = pageY - touchY + onReleaseY;
 
       let limitedCoordinates;
 
-      if (this.props.isOrthogonalPad) {
-        limitedCoordinates = this.limitCoordinatesForOrthogonalPad(newX, newY);
+      if (isOrthogonalPad) {
+        limitedCoordinates = limitCoordinatesForOrthogonalPad(newX, newY);
       } else {
-        limitedCoordinates = this.limitCoordinates(newX, newY);
+        limitedCoordinates = limitCoordinates(newX, newY);
       }
       const { x, y } = limitedCoordinates;
 
-      if (typeof x === "number" && typeof y === "number") {
-        this.sendValue(x, y);
-        this.setState({ x, y }, this.animate);
+      if (!isNaN(x) && !isNaN(y)) {
+        sendValue(x, y);
+        setX(x);
+        setY(y);
       }
     }
-  }
+  };
 
-  onTouchEnd() {
-    let { x, y } = this.state;
-    if (!this.props.freezeOnRelease) {
-      x = 0;
-      y = 0;
+  const onTouchEnd = () => {
+    let onReleaseX = x;
+    let onReleaseY = y;
+    if (!freezeOnRelease) {
+      setX(0);
+      setY(0);
+      onReleaseX = 0;
+      onReleaseY = 0;
     }
-    const onReleaseX = x;
-    const onReleaseY = y;
-    this.sendValue(x, y);
-    this.setState({
-      onReleaseX,
-      onReleaseY,
-      padX: 0,
-      padY: 0,
-      touchX: 0,
-      touchY: 0,
-      x,
-      y
-    }, () => {
-      this.animatePad();
-      this.animate();
-    });
-  }
+    setOnReleaseX(onReleaseX);
+    setOnReleaseY(onReleaseY);
+    sendValue(onReleaseX, onReleaseY);
+    setPadX(0);
+    setPadY(0);
+    setTouchX(0);
+    setTouchY(0);
+  };
 
-  onTouchCancel() {
-    this.setState({
-      padX: 0,
-      padY: 0
-    }, this.animatePad);
-  }
+  const onTouchCancel = () => {
+    setPadX(0);
+    setPadY(0);
+  };
 
-  render() {
-    return (
-      <Animated.View onTouchStart={this.onTouchStart}
-                     onTouchEnd={this.onTouchEnd}
-                     onTouchCancel={this.onTouchCancel}
-                     onTouchMove={this.onTouchMove}
-                     style={[AxisPadStyle.wrapper, this.props.wrapperStyle ? this.props.wrapperStyle : {}, {
-                       height: this.state.height,
-                       transform: [{
-                         translateX: this.animatedPadX
-                       }, {
-                         translateY: this.animatedPadY
-                       }],
-                       width: this.state.width
-                     }]}
-                     ref={view => { this.wrapperElement = view; }}>
-        <Animated.View
-          ref={view => { this.handlerElement = view; }}
-          style={[AxisPadStyle.handler, this.props.handlerStyle ? this.props.handlerStyle : {}, {
-            height: this.state.handler,
-            transform: [{
-              translateX: this.state.x
-            }, {
-              translateY: this.state.y
-            }],
-            width: this.state.handler
-          }]}>
-          {this.props.children}
-        </Animated.View>
+  return (
+    <Animated.View onTouchStart={onTouchStart}
+                   onTouchEnd={onTouchEnd}
+                   onTouchCancel={onTouchCancel}
+                   onTouchMove={onTouchMove}
+                   style={[AxisPadStyle.wrapper, props.wrapperStyle ? props.wrapperStyle : {}, {
+                     height: size,
+                     transform: [{
+                       translateX: animatedPadX.current
+                     }, {
+                       translateY: animatedPadY.current
+                     }],
+                     width: size
+                   }]}
+                   ref={ref => wrapperElement.current = ref}>
+      <Animated.View
+        ref={ref => handlerElement.current = ref}
+        style={[AxisPadStyle.handler, props.handlerStyle ? props.handlerStyle : {}, {
+          height: handlerSize,
+          transform: [{
+            translateX: x
+          }, {
+            translateY: y
+          }],
+          width: handlerSize
+        }]}>
+        {props.children}
       </Animated.View>
-    );
-  }
-}
+    </Animated.View>
+  );
+};
 
 const AxisPadStyle =  {
   handler: {
@@ -361,6 +305,12 @@ const AxisPadStyle =  {
     justifyContent: "center",
     width: 300
   }
+};
+
+AxisPad.defaultProps = {
+  handlerSize: 100,
+  size: 300,
+  step: 0
 };
 
 export default AxisPad;
