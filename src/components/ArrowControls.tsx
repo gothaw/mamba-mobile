@@ -1,5 +1,5 @@
 import { FunctionComponent, useContext } from "react";
-import { Button, Text, TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 
 import { Context } from "../client/ContextProvider";
 import { Images } from "../config";
