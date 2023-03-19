@@ -165,7 +165,7 @@ exports[`Game should render without crashing 1`] = `
           {
             "alignItems": "center",
             "backgroundColor": "#00000066",
-            "borderRadius": 300,
+            "borderRadius": 100,
             "height": 100,
             "justifyContent": "center",
             "transform": [
