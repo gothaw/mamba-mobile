@@ -30,6 +30,12 @@ interface Props {
 
 const ANIMATION_DURATION_PAD = 300;
 const ANIMATION_DURATION = 50;
+const HANDLER_CENTER_SNAP_RATIO = 0.6;
+const DEFAULT_STEP = 0;
+const DEFAULT_HANDLER_SIZE = 100;
+const DEFAULT_PAD_SIZE = 300;
+const DEFAULT_PAD_COLOUR = "#00000033";
+const DEFAULT_HANDLER_COLOUR = "#00000066";
 
 const AxisPad: FunctionComponent<Props> = (props) => {
   const animatedPadX = useRef(new Animated.Value(0));
@@ -114,7 +120,7 @@ const AxisPad: FunctionComponent<Props> = (props) => {
     const radius = Math.pow(relativeX * relativeX + relativeY * relativeY, 0.5);
     const relativeMaxRadius = 1 - handlerSize / size;
 
-    if (radius <= relativeMaxRadius * 0.60) { // 60% of max radius, move to constants
+    if (radius <= relativeMaxRadius * HANDLER_CENTER_SNAP_RATIO) {
       return {
         x: 0,
         y: 0
@@ -291,26 +297,22 @@ const AxisPad: FunctionComponent<Props> = (props) => {
 const AxisPadStyle =  {
   handler: {
     alignItems: "center",
-    backgroundColor: "#00000066",
-    borderRadius: 300,
-    height: "60%",
-    justifyContent: "center",
-    width: "60%"
+    backgroundColor: DEFAULT_HANDLER_COLOUR,
+    borderRadius: DEFAULT_HANDLER_SIZE,
+    justifyContent: "center"
   },
   wrapper: {
     alignItems: "center",
-    backgroundColor: "#00000033",
-    borderRadius: 300,
-    height: 300,
-    justifyContent: "center",
-    width: 300
+    backgroundColor: DEFAULT_PAD_COLOUR,
+    borderRadius: DEFAULT_PAD_SIZE,
+    justifyContent: "center"
   }
 };
 
 AxisPad.defaultProps = {
-  handlerSize: 100,
-  size: 300,
-  step: 0
+  handlerSize: DEFAULT_HANDLER_SIZE,
+  size: DEFAULT_PAD_SIZE,
+  step: DEFAULT_STEP
 };
 
 export default AxisPad;
