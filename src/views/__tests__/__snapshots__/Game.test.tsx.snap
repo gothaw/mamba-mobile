@@ -133,40 +133,27 @@ exports[`Game should render without crashing 1`] = `
       </View>
     </View>
     <View
-      collapsable={false}
-      forwardedRef={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchMove={[Function]}
-      onTouchStart={[Function]}
       style={
         {
-          "alignItems": "center",
-          "backgroundColor": "#00000033",
-          "borderRadius": 300,
-          "height": 300,
-          "justifyContent": "center",
-          "transform": [
-            {
-              "translateX": 0,
-            },
-            {
-              "translateY": 0,
-            },
-          ],
-          "width": 300,
+          "bottom": "5%",
+          "position": "absolute",
+          "right": 0,
         }
       }
     >
       <View
         collapsable={false}
         forwardedRef={[Function]}
+        onTouchCancel={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
         style={
           {
             "alignItems": "center",
-            "backgroundColor": "#00000066",
-            "borderRadius": 100,
-            "height": 100,
+            "backgroundColor": "rgba(0,0,0,0.4)",
+            "borderRadius": 150,
+            "height": 150,
             "justifyContent": "center",
             "transform": [
               {
@@ -176,10 +163,33 @@ exports[`Game should render without crashing 1`] = `
                 "translateY": 0,
               },
             ],
-            "width": 100,
+            "width": 150,
           }
         }
-      />
+      >
+        <View
+          collapsable={false}
+          forwardedRef={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "rgba(0,0,0,0.8)",
+              "borderRadius": 75,
+              "height": 75,
+              "justifyContent": "center",
+              "transform": [
+                {
+                  "translateX": 0,
+                },
+                {
+                  "translateY": 0,
+                },
+              ],
+              "width": 75,
+            }
+          }
+        />
+      </View>
     </View>
   </View>
 </ViewManagerAdapter_ExpoLinearGradient>
