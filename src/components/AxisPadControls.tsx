@@ -1,6 +1,8 @@
 import { FunctionComponent, useContext } from "react";
+import { View } from "react-native";
 
 import { Context } from "../client/ContextProvider";
+import { Game } from "../config";
 import { EngineInterface } from "../types/engineInterface";
 
 import AxisPad from "./AxisPad";
@@ -13,12 +15,18 @@ const AxisPadControls : FunctionComponent<Props> = ({ engine }) => {
   const context = useContext(Context);
   
   return (
-    <AxisPad
-      onValue={({ x, y }) => {
-        console.log(x, y);
-      }}
-      isOrthogonalPad={true}
-    />
+    <View style={context.theme.gameControls}>
+      <AxisPad
+        onValue={({ x, y }) => {
+          console.log(x, y);
+        }}
+        isOrthogonalPad={true}
+        handlerSize={Game.HandlerSize}
+        size={Game.PadSize}
+        handlerStyle={context.theme.axisPadHandler}
+        wrapperStyle={context.theme.axisPad}
+      />
+    </View>
   );
 };
 

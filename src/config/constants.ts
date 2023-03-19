@@ -20,7 +20,9 @@ export enum TestIds {
 export enum Game {
   Width = 0.8 * windowWidth,
   Height = windowHeight,
-  Border = 10
+  Border = 10,
+  HandlerSize = 0.1 * windowWidth,
+  PadSize = 0.2 * windowWidth
 }
 
 export enum Events {

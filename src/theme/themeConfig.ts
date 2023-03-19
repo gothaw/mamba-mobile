@@ -13,6 +13,8 @@ export enum Palette {
   BackgroundGreen = "#898430",
   BackgroundLightGreen = "#bbb539",
   Black = "#000000",
+  BlackTransparentLight = "rgba(0,0,0,0.4)",
+  BlackTransparent = "rgba(0,0,0,0.8)",
   White = "#ffffff",
   Grey = "#c9c9c9",
   Yellow = "#ffe100",

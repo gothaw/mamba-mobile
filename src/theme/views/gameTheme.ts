@@ -7,6 +7,14 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 export const gameTheme = {
+  axisPad: {
+    backgroundColor: Palette.BlackTransparentLight,
+    borderRadius: Game.PadSize
+  },
+  axisPadHandler: {
+    backgroundColor: Palette.BlackTransparent,
+    borderRadius: Game.HandlerSize
+  },
   gameBackgroundImg: {
     borderColor: Palette.Grey,
     borderWidth: 4,
@@ -18,7 +26,7 @@ export const gameTheme = {
     ...backgroundShadow
   },
   gameControls: {
-    bottom: "3%",
+    bottom: "5%",
     position: "absolute",
     right: 0
   },

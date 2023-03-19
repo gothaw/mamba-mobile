@@ -10,6 +10,8 @@ export interface ThemeInterface {
   mainMenuLeftWeb?: object,
   mainMenuRightWeb?: object,
   mainMenuWebImg?: object,
+  axisPad?: object,
+  axisPadHandler?: object,
   gameControlsBottomRow?: object,
   gameControlsButton?: object,
   gameControlsButtonImg?: object,
