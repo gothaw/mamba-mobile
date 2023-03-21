@@ -5,7 +5,7 @@ import { Context } from "../client/ContextProvider";
 import { Game } from "../config";
 import { Directions } from "../config/constants";
 import { useControls } from "../hooks/useControls";
-import { EngineInterface } from "../types/engineInterface";
+import { EngineInterface } from "../types";
 
 import AxisPad from "./AxisPad";
 

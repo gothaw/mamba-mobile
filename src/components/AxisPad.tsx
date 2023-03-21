@@ -298,13 +298,13 @@ const AxisPadStyle =  {
   handler: {
     alignItems: "center",
     backgroundColor: DEFAULT_HANDLER_COLOUR,
-    borderRadius: DEFAULT_HANDLER_SIZE,
+    borderRadius: DEFAULT_HANDLER_SIZE * 0.5,
     justifyContent: "center"
   },
   wrapper: {
     alignItems: "center",
     backgroundColor: DEFAULT_PAD_COLOUR,
-    borderRadius: DEFAULT_PAD_SIZE,
+    borderRadius: DEFAULT_PAD_SIZE * 0.5,
     justifyContent: "center"
   }
 };

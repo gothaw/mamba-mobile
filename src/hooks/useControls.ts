@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 import { Events } from "../config";
-import { EngineInterface } from "../types/engineInterface";
+import { EngineInterface } from "../types";
 
 const MOVE_TIMEOUT = 60;
 

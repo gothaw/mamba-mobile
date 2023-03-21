@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { View } from "react-native";
 
-import { TestIds } from "../config/constants";
+import { Game, TestIds } from "../config/constants";
 
 // todo Styling and component WIP
 
@@ -19,12 +19,12 @@ const Snake: FunctionComponent<Props> = (props) => {
       testID={TestIds.Snake}
       style={{
         backgroundColor: "red",
-        borderRadius: 7.5,
-        height: 15,
+        borderRadius: Game.SnakeHeadSize * 0.5,
+        height: Game.SnakeHeadSize,
         left: x,
         position: "absolute",
         top: y,
-        width: 15
+        width: Game.SnakeHeadSize
       }}
     />
   );

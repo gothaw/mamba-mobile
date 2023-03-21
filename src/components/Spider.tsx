@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { View } from "react-native";
 
-import { TestIds } from "../config/constants";
+import { Game, TestIds } from "../config/constants";
 
 // todo Styling and component WIP
 
@@ -19,12 +19,12 @@ const Spider: FunctionComponent<Props> = (props) => {
       testID={TestIds.Spider}
       style={{
         backgroundColor: "black",
-        borderRadius: 7.5,
-        height: 15,
+        borderRadius: Game.SpiderSize * 0.5,
+        height: Game.SpiderSize,
         left: x,
         position: "absolute",
         top: y,
-        width: 15
+        width: Game.SpiderSize
       }}
     />
   );

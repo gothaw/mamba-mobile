@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { Context } from "../client/ContextProvider";
 import { Images } from "../config";
 import { useControls } from "../hooks/useControls";
-import { EngineInterface } from "../types/engineInterface";
+import { EngineInterface } from "../types";
 
 import ArrowControlsButton from "./ArrowControlsButton";
 

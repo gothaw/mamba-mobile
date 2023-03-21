@@ -9,11 +9,11 @@ const windowHeight = Dimensions.get("window").height;
 export const gameTheme = {
   axisPad: {
     backgroundColor: Palette.BlackTransparentLight,
-    borderRadius: Game.PadSize
+    borderRadius: Game.PadSize * 0.5
   },
   axisPadHandler: {
     backgroundColor: Palette.BlackTransparent,
-    borderRadius: Game.HandlerSize
+    borderRadius: Game.HandlerSize * 0.5
   },
   gameBackgroundImg: {
     borderColor: Palette.Grey,
@@ -47,7 +47,7 @@ export const gameTheme = {
   },
   gameEngine: {
     borderColor: Palette.Grey,
-    borderWidth: 4,
+    borderWidth: Game.Border,
     flex: null,
     height: "100%",
     width: "100%"
