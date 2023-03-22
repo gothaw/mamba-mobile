@@ -99,7 +99,7 @@ exports[`Game should render without crashing 1`] = `
             },
             {
               "borderColor": "#c9c9c9",
-              "borderWidth": 4,
+              "borderWidth": 8,
               "flex": null,
               "height": "100%",
               "width": "100%",
@@ -152,7 +152,7 @@ exports[`Game should render without crashing 1`] = `
           {
             "alignItems": "center",
             "backgroundColor": "rgba(0,0,0,0.4)",
-            "borderRadius": 150,
+            "borderRadius": 75,
             "height": 150,
             "justifyContent": "center",
             "transform": [
@@ -174,7 +174,7 @@ exports[`Game should render without crashing 1`] = `
             {
               "alignItems": "center",
               "backgroundColor": "rgba(0,0,0,0.8)",
-              "borderRadius": 75,
+              "borderRadius": 37.5,
               "height": 75,
               "justifyContent": "center",
               "transform": [
